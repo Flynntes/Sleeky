@@ -7,7 +7,6 @@ Features:
 * Written in PHP
 * Easy install
 * Simple settings customisation via variables
-* Built in antispam
 * Custom url creation
 * Full support
 

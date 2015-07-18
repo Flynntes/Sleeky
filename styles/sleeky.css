@@ -1,0 +1,62 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  background: #fff;
+}
+
+white {
+ background: #fff !important;   
+}
+
+.col-centered {
+float: none;
+margin: 0 auto;
+}
+
+custom-link {
+ visibility: hidden;
+    
+}
+
+.show_hide {
+	display:none;
+}
+
+.url-input {
+    text-align: center;
+}
+
+.small-p {
+ font-size: 15px !important;   
+}
+
+.cog {
+  padding-bottom: 4px;
+  padding-top: 2px;   
+}
+
+.alert {
+  padding: 0px !important;
+  max-width: 600px;
+}
+
+.right {
+ text-align: right;   
+}
+
+.center {
+    text-align: center;
+}
+
+.bold {
+ font-weight: bold;
+}
+
+.margin {
+ margin-bottom: 30px;	
+}
+
+.spacer {
+ padding-bottom: 50px;   
+}

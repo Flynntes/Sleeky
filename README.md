@@ -9,7 +9,7 @@ A simple public interface for YOURLS with features such as custom url creation a
 5. That’s it, it you visit your YOURLS install website, you should see the Sleeky theme!
 
 #Help
-Need a hand? I would love to help you out! Head over to my [site](http://flynntes.com/contact)
+Need a hand? I would love to help you out! Head over to my [site](http://flynntes.com/contact). You could also just open an issue... your choice.
 
 #License
-This code is released under the [GPL License](https://github.com/Flynntes/Sleeky/blob/master/LICENSE.md)
+This code is released under the [MIT License](https://github.com/Flynntes/Sleeky/blob/master/LICENSE.md)

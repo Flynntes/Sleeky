@@ -1,0 +1,83 @@
+//
+// Navigation
+// --------------------------------------------------
+
+
+// Primary (Horiztonal) Navigation
+// -------------------
+
+ul[class*="menu-"] {
+	margin: 1em 0;
+	padding: 0;
+
+	li {
+		position: relative;
+		list-style: none;
+
+		a {
+			padding: 0.75em 1.25em;
+			line-height: 100%;
+			color: @textColor;
+			text-decoration: none;
+		}
+		&:hover > a,
+		a:hover,
+		a.selected,
+		&.selected a { 
+			background: @baseColor;
+		}
+
+		a:active,
+		a.selected:hover,
+		&.selected a:hover { 
+			background: darken(@baseColor, 3%);
+		}
+	}
+}
+
+.menu-primary {
+	li {
+		display: inline;
+
+		a { .inline-block(); }
+
+		// dropdowns
+
+		ul {
+			display: none;
+			margin: 0;
+			padding: 0;
+			position: absolute;
+			top: 2.25em;
+			left: 0;
+			border: 1px solid @baseColor;
+			background: white;
+			z-index: 1000;
+
+			li {
+				display: block;
+
+				a { 
+					display: block;
+					white-space: nowrap;
+				}
+			}
+		}
+		&:hover ul,
+		ul:hover {
+			display: inline;
+		}
+	}
+}
+
+.menu-secondary {
+	border: 1px solid @baseColor;
+
+	li {
+		display: block;
+
+		a {
+			display: block;
+		}
+	}
+}

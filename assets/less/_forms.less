@@ -1,0 +1,103 @@
+//
+// Forms
+// --------------------------------------------------
+
+
+// Basic Styles
+// -------------------
+
+form {
+	display: block;
+}
+
+fieldset {
+	display: block;
+	margin: 1.25em 0;
+	padding: 0;
+}
+
+legend {
+	display: block;
+	width: 100%;
+	margin: 0 0 1em 0;
+	font-weight: bold;
+	border-bottom: 1px solid @baseColor;
+}
+
+label {
+	display: block;
+	margin: 0 0 0.25em;
+	font-weight: bold;
+}
+
+// Form Elements
+// -------------------
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="image"],
+input[type="color"] {
+	display: block;
+	padding: 0.5em;
+	margin: 0 0 0.625em;
+	vertical-align: middle;
+	border: 1px solid @baseColor;
+	outline: none;
+	font-family: inherit;
+	font-size: 1em;
+	-webkit-appearance: none;
+	border-radius: 0;
+
+	&:hover {
+		border: 1px solid darken(@baseColor, 3%);
+	}
+	&:focus {
+		border: 1px solid darken(@baseColor, 5%);
+	}
+}
+
+// Form Buttons
+
+input[type="submit"],
+input[type="button"] {
+	display: block;
+	border-radius: 0;
+}
+input[type="file"] {
+	padding: 0.125em;
+	margin: 0 0 0.625em;
+	font-family: inherit;
+	font-size: 1em;
+	-webkit-appearance: none;
+	border-radius: 0;
+	line-height: 100%;
+}
+
+// Misc Additions
+
+textarea {
+	padding: 0.25em; // to make the textarea more writeable
+}
+
+// Bonus HTML5 Elements
+
+progress,
+meter {
+	padding: 0.125em;
+	margin: 0 0 0.625em;
+	font-family: inherit;
+	font-size: 1em;
+}

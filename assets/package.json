@@ -1,0 +1,30 @@
+{
+  "name": "Base",
+  "version": "1.0.0",
+  "keywords": [
+    "base",
+    "grid",
+    "responsive"
+  ],
+  "description": "A semantic, lightweight and extensible framework to power the next generation of responsive websites.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agency/base.git"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/agency/base/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.6",
+    "grunt-contrib-less": "~0.7.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-cssmin": "~0.6.2"
+  }
+}

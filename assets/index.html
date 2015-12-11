@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+
+        <title>Base</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/mobile.css">
+        <link rel="stylesheet" href="css/tablet.css">
+        <link rel="stylesheet" href="css/desktop.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>        
+    </head>
+    <body>
+
+        <div class="container">
+
+            <header>
+                <h1>Getting Started</h1>
+                <p>This is a basic HTML template to help you get started with <a href="http://base.gs"><strong>Base</strong></a>. Apart from the grid system, Base includes a sensible reset to start styling your site on.</p>
+                <hr>
+            </header>
+
+            <main>
+
+                <article>
+                    
+                    <h2>Quick Reference</h2>
+                    <p>These quick guides will help you get started. For more detailed instructions check out the documentation.</p>
+                    
+                    <h3>Grid <em>(_layout.less)</em></h3>
+                    <table>
+                        <tr>
+                            <th>Mixin</th>
+                            <th>Usage</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code>.container()</code>
+                            </td>
+                            <td>
+                                <em>Apply to an element wrapping the column structure</em>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code>.column(@columns, @offset, @padding)</code>
+                            </td>
+                            <td>
+                                <code>.column(8, 0, 0)</code>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <h3>Buttons <em>(_buttons.less)</em></h3>
+                    <button>.button</button>
+                    <button class="disabled">.button.disabled</button><br>
+                    <button class="primary">.button-primary</button>
+                    <button class="primary disabled">.button-primary.disabled</button><br>
+                    <button class="secondary">.button-secondary</button>
+                    <button class="secondary disabled">.button-secondary.disabled</button>
+
+                    <h3>Forms <em>(_forms.less)</em></h3>
+                    <p>All HTML5 form elements are normalized to a set of core styles.</p>
+                    <form>
+                        <input type="text" placeholder="Name">
+                        <input type="email" placeholder="Email">
+                        <input type="submit" value="Subscribe">
+                    </form>
+
+                    <h3>Mixins <em>(_mixins.less)</em></h3>
+                    <p>Base includes LESS mixins for CSS3 properties, animations, gradients and some utility mixins. Check the source to see what's available.</p>
+
+                    <h3>Menus <em>(_menus.less)</em></h3>
+                    <p>Add <code>.menu-primary</code> for a horizontal menu or <code>.menu-secondary</code> for a vertical menu.</p>
+                    <h4>.menu-primary</h4>
+                    <nav>
+                        <ul class="menu-primary">
+                            <li class="selected"><a href="#">Home</a></li>
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Dropdown</a>
+                                <ul>
+                                    <li><a href="#">Subpage Item</a></li>
+                                    <li><a href="#">Subpage Item</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <h4>.menu-secondary</h4>
+                    <nav>
+                        <ul class="menu-secondary">
+                            <li class="selected"><a href="#">Home</a></li>
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Dropdown</a></li>
+                        </ul>
+                    </nav>
+
+                    <h3>Type <em>(_type.less)</em></h3>
+                    <p>Typography is controlled in <code>_type.less</code>. Base provides a clean and sensible reset for heading styles, paragraphs, tables, lists and others.</p>
+
+                    <h3>Variables <em>(_variables.less)</em></h3>
+                    <p>Control colors and fonts across the site. Begins with:</p>
+                    <ul>
+                        <li>Heading font-family - <em>@headingFont</em></li>
+                        <li>Paragraph font-family - <em>@paragraphFont</em></li>
+                        <li>Text color - <em>@textColor</em></li>
+                        <li>Base color - <em>@baseColor</em></li>
+                        <li>Primary color - <em>@primaryColor</em></li>
+                        <li>Secondary color - <em>@secondaryColor</em></li>
+                    </ul>
+                    
+
+                </article>
+
+                <aside>
+                    
+                    <h2>Resources</h2>
+
+                    <h4>Documentation</h4>
+                    <p>More detailed documentation is available on the <a href="https://github.com/agency/base" target="_blank">GitHub repo</a>.</p>
+
+                    <h4>CSS Compiler</h4>
+                    <p>Base includes Grunt configuration and tasks to watch and compile LESS files. With <a href="http://nodejs.org/download/" target="_blank">npm</a> installed, navigate to the Base directory in command line and run <code>npm install</code> then <code>grunt dev</code>.</p>
+
+                    <h4>Sidebar Content</h4>
+                    <p>This is a sidebar block to demonstrate a basic Base grid. Change the columns in <code>_layout.less</code> and resize the page to see how the compiled responsive files work</p>
+
+                </aside>
+
+            </main>
+
+            <footer>
+                <hr>
+                <p>Base is maintained by the team at <a href="https://twitter.com/agencysc">@agencysc</a> and distributed under the <a href="https://github.com/agency/base/blob/master/LICENSE">Apache 2.0 license</a>.</p>
+            </footer>
+
+        </div>
+
+        <script src="js/vendor/jquery-1.10.2.min.js"></script> 
+
+    </body>
+</html>

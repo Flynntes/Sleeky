@@ -1,0 +1,93 @@
+//
+// Base CSS File - Standard Desktops & CSS Default ~960px
+// --------------------------------------------------
+
+// Grid Variables
+// -------------------
+
+@containerWidth: 960px;
+@columnCount:    12;
+@gutterRatio:    25%;
+@paddingRatio:   100%;
+
+
+// Type Variables
+// -------------------
+
+@fontSize: 15px;
+@lineHeight: 140%;
+
+
+// Base Styles
+// -------------------
+
+@import "_reset.less";
+
+@import "_variables.less";
+@import "_mixins.less";
+
+@import "_layout.less";
+@import "_type.less";
+@import "_forms.less";
+@import "_buttons.less";
+@import "_menus.less";
+
+
+// Custom Styles
+// -------------------
+body {
+	background-color: #ebebeb;
+}
+
+p {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.verticle-center {
+	min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+	min-height: 100vh; /* These two lines are counted as one :-)       */
+	display: flex;
+	align-items: center;
+}
+
+.main-content {
+	background-color: white;
+	border-radius: 5px;
+}
+
+img {
+	float: left;
+	padding: 1em;
+}
+
+.head-text {
+	display: inline;
+}
+
+.head-text-container {
+	padding: 1em;
+} 
+
+.head {
+	width: 26em;
+}
+
+.url {
+	background-color: #ebebeb;
+	border-bottom-color: #b3b3b3;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: #b3b3b3;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #b3b3b3;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: #b3b3b3;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-top-style: solid;
+    border-top-width: 1px;
+}

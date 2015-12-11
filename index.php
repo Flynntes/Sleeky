@@ -1,54 +1,8 @@
 <?php
-// PHP Config - These control the look and details on your site. Consult documentation for more details.
-// GENERAL SETTINGS
-$siteTitle = "Sleeky for YOURLS"; // Title of the page.
-$siteDescription = "One of the most amazing YOURLS theme's in the world!"; // Description of your site for search engines.
-$siteName = "Sleeky"; // Name of your site. Used in the top section and footer. Example: Sleeky or Shorty or Linky. I think you get the point...
-$siteTagline = "The sleek public theme for YOURLS"; // The tagline of your site. Used underneath siteName in the top section.
-$siteUrl = "http://localhost:8888"; // The url of your site. Don't forgot to add http:// For example: http://shorturl.com or http://sho.rt
-$siteLogo = "/img/logo.png"; // The small square logo displayed at the top of the page
-$siteLogoLarge = "/img/logo-head.png"; // The rectangular logo displayed in navigation and footer.
-$siteFavicon = "/img/favicon.ico"; // The favourite icon used by the browser for bookmarks. Must be a .ico file and 16px x 16px
+include 'config.php'; //Grab all the setting values
 
-// About Area Settings
-$aboutHead = "About"; // About title at the top of the section.
-$aboutDescription = "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nulla vitae elit libero, a pharetra augue."; // About description at the top of the section.
-
-$aboutPoint1 = "Clean"; // About Area Heading 1
-$aboutText1 = "Nulla vitae elit libero, a pharetra augue. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis. Etiam porta sem malesuada magna mollis euismod."; // 3 Column Text Area 1
-
-$aboutPoint2 = "Responsive"; // About Area Heading 2
-$aboutText2 = "Nulla vitae elit libero, a pharetra augue. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis. Etiam porta sem malesuada magna mollis euismod."; // 3 Column Text Area 1
-
-$aboutPoint3 = "Bootstrap Powered"; // About Area Heading 3
-$aboutText3 = "Nulla vitae elit libero, a pharetra augue. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis. Etiam porta sem malesuada magna mollis euismod."; // 3 Column Text Area 1
-
-
+include 'header.php'; // Get the header
 ?>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<?php echo "$siteDescription" ?>">
-    <link rel="icon" href="<?php echo "$siteFavicon" ?>">
-
-    <title><?php echo "$siteTitle" ?></title>
-
-    <!-- BEGIN CSS -->
-    <!-- Bootstrap core CSS -->
-    <link href="/styles/bootstrap.css" rel="stylesheet">
-      
-    <!-- Sleeky CSS -->
-    <link href="/styles/sleeky.css" rel="stylesheet">
-    <!-- END CSS -->
-
-    <!-- Add extra support of older browsers -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
 
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">

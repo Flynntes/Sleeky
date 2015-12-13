@@ -6,7 +6,7 @@
 // Grid Variables
 // -------------------
 
-@containerWidth: 768px;
+@containerWidth: 500px;
 @columnCount:    12;
 @gutterRatio:    25%;
 @paddingRatio:   100%;
@@ -25,12 +25,27 @@
 @import "_variables.less"; // site variables
 @import "_mixins.less"; // grid and mixins	
 
-@media (min-width: 768px) and (max-width: 959px) {
+@media (min-width: 501px) and (max-width: 959px) {
 	
 	@import "_layout.less";
 	
 
 	// Custom Styles
 	// -------------------
+	.logo {
+		float: none;
+	}
 
+	input[type="text"] {
+	    width: 100%;
+	    padding-right: 0;
+	}
+
+	input[type="submit"] {
+		width: 40%;
+	    -webkit-border-radius: 6px;
+	    -moz-border-radius: 6px;
+	    border-radius: 6px;
+	    margin-left: 0;
+	}
 }

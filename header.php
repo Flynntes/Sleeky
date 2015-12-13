@@ -1,21 +1,43 @@
+<?php include 'config.php'; ?>
 <html lang="en">
   <head>
   	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<?php echo "$siteDescription" ?>">
-    <link rel="icon" href="<?php echo "$siteFavicon" ?>">
+    <meta name="description" content="<?php echo description ?>">
+    <link rel="icon" href="<?php echo favicon ?>">
 
-    <title><?php echo "$siteTitle" ?></title>
+    <title><?php echo title ?></title>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800|Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.5/clipboard.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 
     <link rel="stylesheet" href="/assets/css/base.css">
 	<link rel="stylesheet" href="/assets/css/mobile.css">
 	<link rel="stylesheet" href="/assets/css/tablet.css">
 	<link rel="stylesheet" href="/assets/css/desktop.css">
 	<script src="/assets/js/vendor/modernizr-2.6.2.min.js"></script>   
+
+	<script>
+		$(document).ready(function() {
+		$('body').css('display', 'none');
+		$('body').fadeIn(1000);
+		$('.link').click(function() {
+			event.preventDefault();
+			newLocation = this.href;
+		$('body').fadeOut(1000, newpage);
+		});
+		function newpage() {
+			window.location = newLocation;
+		}
+		});
+	</script>
 
     <!-- Add extra support of older browsers -->
     <!--[if lt IE 9]>

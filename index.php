@@ -39,6 +39,12 @@ include 'header.php';
 	}
 ?>
 
+<?php if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ): ?>
+   <?php  if (strpos($message,'added') === false): ?>
+	    <div id="error" class="alert alert-warning error" role="alert"><h5>Oh no, <?php echo $message; ?>!</h5><a id="close" class="close" href="#"><i class="fa fa-times fa-2x spin"></i></a></div>	    
+	<?php endif; ?>
+<?php endif; ?>
+
 	
 <?php if( $status == 'success' ):  ?>
 
@@ -100,3 +106,6 @@ include 'header.php';
 <?php endif; ?>
 </body>
 </html>
+<?php
+include 'footer.php';
+?>

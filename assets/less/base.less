@@ -142,7 +142,7 @@ input[type="submit"],
 }
 
 .footer {
-    position: fixed;
+    position: absolute;
     height: 2.2em;
     padding-top: 0.8em;
 	color: black;
@@ -204,4 +204,22 @@ input[type="submit"],
 
 .light {
 	font-weight: 400;
+}
+
+.error {
+    background-color: #f44336;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:100;
+    color: white;
+    text-align: center;
+}
+
+.close {
+	top: 0;
+    right: 0;
+    position: fixed;
+    color: white;
+    padding: 0.3em;
 }

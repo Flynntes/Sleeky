@@ -22,22 +22,9 @@
 	<link rel="stylesheet" href="/assets/css/mobile.css">
 	<link rel="stylesheet" href="/assets/css/tablet.css">
 	<link rel="stylesheet" href="/assets/css/desktop.css">
+
 	<script src="/assets/js/vendor/modernizr-2.6.2.min.js"></script>   
 
-	<script>
-		$(document).ready(function() {
-		$('body').css('display', 'none');
-		$('body').fadeIn(1000);
-		$('.link').click(function() {
-			event.preventDefault();
-			newLocation = this.href;
-		$('body').fadeOut(1000, newpage);
-		});
-		function newpage() {
-			window.location = newLocation;
-		}
-		});
-	</script>
 
     <!-- Add extra support of older browsers -->
     <!--[if lt IE 9]>

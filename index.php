@@ -84,7 +84,7 @@ include 'header.php';
 	<div class="container verticle-center main">
 		<div class="main-content">
 			<section class="head">
-				<img src="<?php echo logo ?>" alt="Logo" width="95px" class="logo">
+				<img src="<?php echo siteURL ?><?php echo logo ?>" alt="Logo" width="95px" class="logo">
 				<p><?php echo description ?></p>
 			</section>
 			<section class="field-section">

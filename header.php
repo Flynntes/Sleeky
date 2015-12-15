@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 
-    <link rel="stylesheet" href="/assets/css/base.css">
-	<link rel="stylesheet" href="/assets/css/mobile.css">
-	<link rel="stylesheet" href="/assets/css/tablet.css">
-	<link rel="stylesheet" href="/assets/css/desktop.css">
+    <link rel="stylesheet" href="<?php echo siteURL ?>/assets/css/base.css">
+	<link rel="stylesheet" href="<?php echo siteURL ?>/assets/css/mobile.css">
+	<link rel="stylesheet" href="<?php echo siteURL ?>/assets/css/tablet.css">
+	<link rel="stylesheet" href="<?php echo siteURL ?>/assets/css/desktop.css">
 
-	<script src="/assets/js/vendor/modernizr-2.6.2.min.js"></script>   
+	<script src="<?php echo siteURL ?>/assets/js/vendor/modernizr-2.6.2.min.js"></script>   
 
 
     <!-- Add extra support of older browsers -->

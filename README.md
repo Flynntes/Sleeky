@@ -1,3 +1,4 @@
+![sleeky logo]/assets/img/logo-large.png)
 # Sleeky
 A simple public interface for YOURLS with features such as custom url creation and easy customiation. Made for YOURLS, an open source piece of software that lets you create a url shortener on your own domain. With this theme, you can take your YOURLS install to the next level. [More info](http://flynntes.com/projects/sleeky)
 

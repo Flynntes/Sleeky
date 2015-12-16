@@ -60,7 +60,7 @@ include 'header.php';
 					<h2>YOUR SHORTENED LINK:</h2>
 				</section>
 				<section class="link-section">
-					<input type="text" class="short-url" value="<?php echo $shorturl; ?>">
+					<input type="text" class="short-url" style="text-transform:none;" value="<?php echo $shorturl; ?>">
 					<button class="short-url-button" data-clipboard-text="<?php echo $shorturl; ?>">Copy</button>
 					<span class="info">View info &amp; stats at <a href="<?php echo $shorturl; ?>+"><?php echo $url; ?>+</a></span>
 				</section>

@@ -2,6 +2,8 @@
 
 Sleeky is a minimal public interface for YOURLS. Sleeky is made for YOURLS, an open source piece of software that lets you create your own URL shortener. With this theme, you can take your YOURLS install to the next level.
 
+# [Demo](http://sleeky.flynntes.com)
+
 ![screenshot](assets/img/screenshot1.png)
 
 ##Quick Start

@@ -104,8 +104,8 @@ include 'header.php';
 		</div>
 	</div>
 <?php endif; ?>
-</body>
-</html>
 <?php
 include 'footer.php';
 ?>
+</body>
+</html>

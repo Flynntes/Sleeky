@@ -39,12 +39,6 @@ include 'header.php';
 	}
 ?>
 
-<?php if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ): ?>
-   <?php  if (strpos($message,'added') === false): ?>
-	    <div id="error" class="alert alert-warning error" role="alert"><h5>Oh no, <?php echo $message; ?>!</h5><a id="close" class="close" href="#"><i class="fa fa-times fa-2x spin"></i></a></div>	    
-	<?php endif; ?>
-<?php endif; ?>
-
 	
 <?php if( $status == 'success' ):  ?>
 
@@ -54,7 +48,7 @@ include 'header.php';
 		<div class="container verticle-center">
 			<div class="main-content">
 				<div class="close">
-				    <a href="<?php echo siteURL ?>"><i class="fa fa-times fa-2x spin"></i></a>
+				    <a href="<?php echo siteURL ?>"><i class="material-icons">close</i></a>
 				</div>
 				<section class="head">
 					<h2>YOUR SHORTENED LINK:</h2>
@@ -83,15 +77,22 @@ include 'header.php';
 
 	<div class="container verticle-center main">
 		<div class="main-content">
+			<div class="above">
+				<img src="<?php echo siteURL ?><?php echo logo ?>" alt="Logo" width="95px">
+			</div>
 			<section class="head">
-				<img src="<?php echo siteURL ?><?php echo logo ?>" alt="Logo" width="95px" class="logo">
 				<p><?php echo description ?></p>
 			</section>
 			<section class="field-section">
-			<form method="post" action="">
-				<input type="text" name="url" class="url" placeholder="PASTE URL, SHORTEN &amp; SHARE">
-				<input type="submit" value="Shorten">
-			</form>
+				<?php if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ): ?>
+					<?php  if (strpos($message,'added') === false): ?>
+						<div id="error" class="alert alert-warning error" role="alert"><h5>Oh no, <?php echo $message; ?>!</h5><a id="close" class="close" href="#"><i class="material-icons">close</i></a></div>	    
+					<?php endif; ?>
+				<?php endif; ?>
+				<form method="post" action="">
+					<input type="text" name="url" class="url" placeholder="PASTE URL, SHORTEN &amp; SHARE">
+					<input type="submit" value="Shorten">
+				</form>
 			</section>
 			<section class="footer">
 		<div>

@@ -32,6 +32,7 @@ $footerLinks = [
     "About" => "http://google.com",
     "Contact" => "http://apple.com",
     "Legal" => "http://example.com",
+    "Admin" => "/admin"
 ];
 
 ?>

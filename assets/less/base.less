@@ -36,7 +36,7 @@
 // Custom Styles
 // -------------------
 body {
-	background-color: @baseColor;
+	background-color: @primaryColor;
 	display: none;
 }
 
@@ -51,6 +51,11 @@ body {
 	background-color: white;
 	border-radius: 5px;
 	position: relative;
+}
+
+.above {
+    text-align: center;
+    margin-top: -50px;
 }
 
 .logo {
@@ -68,9 +73,12 @@ body {
     margin: auto;
     width: 100%;
     padding: 1em;
-    width: 52%;
+    width: 65%;
 }
 
+.material-icons {
+    font-size: 2em;
+}
 
 .field-section {
 	margin: auto;
@@ -146,7 +154,7 @@ input[type="submit"],
     position: absolute;
     height: 2.2em;
     padding-top: 0.8em;
-	color: black;
+	color: white;
 	font-family: @headingFont;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -157,11 +165,11 @@ input[type="submit"],
     	padding-right: 1.5em;
     }
     a {
-    	color: #a6a6a6;
+    	color: white;
     	.transition(color 0.1s ease-in-out);
     	&:hover {
     		text-decoration: none;
-    		color: darken(#a6a6a6, 10%)
+    		color: darken(white, 10%)
     	}
     }
 }    
@@ -208,12 +216,7 @@ input[type="submit"],
 }
 
 .error {
-    background-color: #f44336;
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:100;
-    color: white;
+    color: #F44336;
     text-align: center;
 }
 

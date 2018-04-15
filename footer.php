@@ -13,7 +13,6 @@
 	});
 
 	$( "#close" ).click(function() {
-		console.log("yep")
 	  $( "#error" ).fadeOut( "slow", function() {
 	    // Animation complete.
 	  });

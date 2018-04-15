@@ -29,10 +29,10 @@ define('logo', '/assets/img/logo-black.png');
 // The array follows a title link structure:
 // "TITLE" => "LINK",
 $footerLinks = [
-    "About" => "http://google.com",
-    "Contact" => "http://apple.com",
-    "Legal" => "http://example.com",
-    "Admin" => "/admin"
+    "About"   =>  "http://google.com",
+    "Contact" =>  "http://apple.com",
+    "Legal"   =>  "http://example.com",
+    "Admin"   =>  "/admin"
 ];
 
 ?>

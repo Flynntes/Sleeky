@@ -19,12 +19,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="<?php echo siteURL ?>/assets/css/base.css">
-    <link rel="stylesheet" href="<?php echo siteURL ?>/assets/css/mobile.css">
-    <link rel="stylesheet" href="<?php echo siteURL ?>/assets/css/tablet.css">
-    <link rel="stylesheet" href="<?php echo siteURL ?>/assets/css/desktop.css">
+    <link rel="stylesheet" href="<?php echo siteURL ?>assets/css/base.css">
+    <link rel="stylesheet" href="<?php echo siteURL ?>assets/css/mobile.css">
+    <link rel="stylesheet" href="<?php echo siteURL ?>assets/css/tablet.css">
+    <link rel="stylesheet" href="<?php echo siteURL ?>assets/css/desktop.css">
 
-    <script src="<?php echo siteURL ?>/assets/js/vendor/modernizr-2.6.2.min.js"></script>   
+    <script src="<?php echo siteURL ?>assets/js/vendor/modernizr-2.6.2.min.js"></script>   
 
 
     <!-- Add extra support of older browsers -->

@@ -1,0 +1,767 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+// Mobile mixin
+@mixin for-size($range) {
+    $phone-upper-boundary: 600px;
+    $tablet-portrait-upper-boundary: 900px;
+    $tablet-landscape-upper-boundary: 1200px;
+    $desktop-upper-boundary: 1800px;
+
+    @if $range == phone-only {
+        @media (max-width: #{$phone-upper-boundary - 1}) { @content; }
+    } @else if $range == tablet-portrait-up {
+        @media (min-width: $phone-upper-boundary) { @content; }
+    } @else if $range == tablet-landscape-up {
+        @media (min-width: $tablet-portrait-upper-boundary) { @content; }
+    } @else if $range == desktop-up {
+        @media (min-width: $tablet-landscape-upper-boundary) { @content; }
+    } @else if $range == big-desktop-up {
+        @media (min-width: $desktop-upper-boundary) { @content; }
+    }
+}
+
+// Use it like this:
+// @include for-size(phone-only) {
+//   margin: 30px;
+// }
+
+//
+// Globals
+//
+body {
+  background-color: $darker;
+  display: inline;
+}
+
+div, p, td, input, p {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+h1,
+h2 {
+  color: $title;
+}
+
+p {
+  color: $text;
+}
+
+a, a:link, a:active, a:visited {
+  color: #828282;
+  text-decoration: none;
+}
+
+a:hover {
+  color: darken($title, 20%);
+  transition: 0.4s all;
+}
+
+input {
+  padding: 10px;
+  border: none !important;
+  background: $light !important;
+  color: $text !important;
+  font-size: 1em !important;
+  outline: none;
+  margin: 0px 5px !important;
+  border-radius: 0 !important;
+
+  @if ($theme == "light") {
+    border-radius: 3px !important;
+  }
+
+  // @if (lightness($light) > 40) {
+  //   color: red !important;
+  // }
+  // @else {
+  //   color: blue !important;
+  // }
+}
+
+input.button,
+input.submit {
+  border-left: 7px solid $accent !important;
+  background: $light !important;
+  font-weight: 600;
+  transition: 0.3s all !important;
+
+  @if ($theme == "light") {
+    background: $accent !important;
+    border-left: none !important;
+    color: white !important;
+    font-weight: 700;
+  }
+}
+
+// Need to fix this, because I've had to copy this down lower to make it apply to the add URL button
+input.button:hover,
+input.submit:hover {
+  background: darken($accent, 15%) !important;
+
+  @if ($theme == "light") {
+    background: darken($accent, 15%) !important;
+  }
+}
+
+input[type="button"]:disabled {
+  cursor: not-allowed;
+}
+
+input.text {
+  border: 1px solid transparent !important;
+  transition: 0.4s all;
+}
+
+@if ($theme != "light") {
+  input.text:active,
+  input.text:focus {
+      border: 1px solid $accent !important;
+  }
+}
+
+select {
+	width: 150px;
+	padding: 5px 35px 5px 10px;
+	// font-size: 0.9em;
+	border: none;
+	border-radius: 0;
+	height: 26px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	color: $text;
+	background: url(data:image/png;base64,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) 96% / 15% no-repeat $light;
+	margin: 5px 10px;
+  transition: 0.4s all;
+  outline: none;
+}
+
+select:hover {
+  	background: url(data:image/png;base64,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) 96% / 15% no-repeat $light;
+}
+
+#javascript_error {
+  background: red;
+  color: white;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+// End Globals
+
+//
+// Notification Bar
+//
+.jquery-notify-bar {
+  color: #fff;
+  text-shadow: none;
+  border: none;
+  opacity: 1;
+  box-shadow: none;
+  font-size: 1.1em;
+  font-weight: 500;
+  position: static;
+  margin-top: 67px;
+  margin-bottom: -80px;
+  padding: 10px;
+
+  a, a:link, a:active, a:visited {
+    color: white;
+  }
+}
+
+.jquery-notify-bar.error,
+.jquery-notify-bar.fail {
+  background-color: #FF9800;
+  color: white;
+}
+
+.jquery-notify-bar.success {
+  color: white;
+  background-color: #4CAF50;
+}
+
+// End Notification Bar
+
+// 
+// Login page
+// 
+.login {
+  #wrap {
+    margin: auto;
+  }
+
+  label {
+    font-size: 1em;
+    font-weight: 600;
+  }
+
+  img {
+    width: 150px;
+    margin: 30px auto;
+    display: flex;
+  }
+
+  input.text {
+    width: 270px !important;
+  }
+
+  input.button {
+    font-weight: 600;
+    padding: 10px 25px;
+    margin-top: 15px !important;
+    font-weight: 600;
+
+    @if ($theme == "light") {
+      background: $accent !important;
+    } else {
+      background: $light !important;
+      border-left: 7px solid $accent !important;
+    }
+  }
+
+  input.button:hover {
+    background: darken($accent, 10%) !important;
+  }
+
+  .error {
+    padding: 10px;
+    background: $accent;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    text-align: center
+  }
+}
+
+// End login page
+
+// 
+// Start Index page
+//
+.index {
+  #add-url {
+    width: 300px;
+  }
+
+  #new_url_form {
+    box-sizing: border-box;
+    height: 85px;
+    overflow: hidden;
+    min-width: 900px;
+  }
+
+  #new_url {
+    border: none;
+    background: $default;
+    text-align: left;
+
+    input.button {
+      margin-top: 10px !important;
+    }
+
+    div {
+      background: $default;
+      padding: 4px;
+      padding-top: 0px;
+    }
+  }
+
+  .create {
+    background: $accent !important;
+    width: 150px;
+    font-size: 1.3em !important;
+    border: none !important;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px !important;
+    margin-left: 20px !important;
+  }
+
+  .top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 85px;
+
+    @if ($theme == "light") {
+      background: $accent;
+    } @else {
+      background: $default;
+    }
+
+    label {
+      font-size: 1.2em;
+      font-weight: 600;
+      color: $text;
+
+      @if ($theme == "light") {
+        color: $default;
+      }
+    }
+
+    input.text {
+      width: 360px;
+      padding: 10px;
+      font-weight: 200;
+      font-size: 1.2em !important;
+
+      @if ($theme == "light") {
+        background: $default !important;
+      } @else {
+        background: $lightest !important;
+      }
+    }
+
+    .short {
+      padding-left: 20px;
+    }
+
+    #add-url {
+      width: 250px;
+    }
+
+    #add-keyword {
+      width: 200px;
+    }
+
+    input.button {
+      font-weight: 500;
+      padding: 10px 25px;
+      font-size: 1.2em !important;
+      margin-left: 20px !important;
+      background: $lightest !important;
+
+      @if ($theme == "light") {
+        background: $default !important;
+        font-weight: 700;
+        color: $accent !important;
+      }
+    }
+
+    input.button:hover {
+      background: darken($accent, 10%) !important;
+
+      @if ($theme == "light") {
+        background: darken(white, 10%) !important;
+      }
+    }
+
+    form {
+      margin-left: 300px;
+      padding: 23px !important;
+    }
+  }
+
+  // Table stuff
+  table.tblSorter {
+    background-color: $default;
+    color: $text;
+
+    a {
+      color: $text;
+    }
+
+    small a {
+      color: darken(white, 50%)
+    }
+
+    thead tr .tablesorter-header {
+      padding: 10px;
+    }
+
+    tfoot tr {
+      background-color: $default;
+    }
+
+    thead tr th,
+    tfoot tr th,
+    th.header {
+      background-color: transparent;
+      border: none;
+      /* font-size: 8pt; */
+      padding: 4px;
+    }
+
+    thead tr .tablesorter-headerAsc,
+    thead tr .tablesorter-headerDesc {
+      background-color: $lightest !important;
+    }
+
+    tbody td {
+      color: $text;
+      padding: 5px;
+      background-color: $light;
+      vertical-align: middle;
+      transition: 0.4s all;
+    }
+
+    tbody tr:hover td {
+      background-color: $lightest !important;
+    }
+
+    tbody tr.normal-row td {
+      background: $light;
+    }
+
+    .keyword {
+      border-left: 7px solid $accent;
+    }
+
+    input.text {
+      padding: 5px;
+      margin: 8px 5px !important;
+    }
+
+    .navigation .nav_link a {
+        background: $light;
+        border: none;
+
+        &:hover {
+          background: $lightest;
+        }
+    }
+
+    tr.edit-row td {
+      background: $default !important;
+    }
+
+    // Icons
+    $icons-list: stats, share, edit, delete;
+    @each $icon in $icons-list {
+      @if $icon == delete {
+        td.actions .button_#{$icon} { 
+          background: red url(../img/#{$icon}.png) 0px center no-repeat;
+          background-size: 23px;
+          background-position: center;
+          border: none;
+          padding: 3px;
+          border-radius: 2px;
+
+          &:hover { 
+            background: darken(red, 10%) url(../img/#{$icon}.png) 0px center no-repeat;
+            background-size: 23px;
+            background-position: center;
+          }
+        }
+      } @else {
+        td.actions .button_#{$icon} { 
+          background: $accent url(../img/#{$icon}.png) 0px center no-repeat;
+          background-size: 23px;
+          background-position: center;
+          border: none;
+          padding: 3px;
+          border-radius: 2px;
+
+          &:hover { 
+            background: darken($accent, 10%) url(../img/#{$icon}.png) 0px center no-repeat;
+            background-size: 23px;
+            background-position: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+// End index page
+
+
+// 
+// Nav
+// 
+nav {
+  background: $default;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 90px 30px;
+  width: 200px;
+  z-index: 10;
+
+  li#admin_menu_logout_link {
+    font-size: 1.3em;
+  }
+
+  ul#admin_menu li:hover {
+    list-style-type: none;
+    color: darken($title, 20%);
+  }
+
+  ul#admin_menu li {
+    color: $title;
+    padding: 5px 0;
+  }
+
+   #admin_menu_logout_link:hover {
+    color: $title !important;
+  }
+
+  .admin_menu_sublevel {
+    font-weight: 100;
+    margin-left: -20px;
+  }
+
+  .material-icons {
+    font-size: 1em;
+    vertical-align: middle;
+    margin-top: -1px;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+}
+
+img.logo {
+  width: 150px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $accent;
+  padding: 15px 55px;
+  z-index: 20;
+}
+
+header {
+  display: none;
+}
+
+// End nav
+
+//
+// Information
+// 
+.infos {
+  #tabs {
+    min-width: 580px;
+
+    .tab {
+      background: $light !important;
+    }
+
+    .wrap_unfloat {
+      margin-bottom: -5px;
+    }
+
+    ul#headers {
+      border: none;
+      padding: 0px;
+    }
+
+    li {
+      color: $text;
+    }
+
+    #historical_clicks li:hover {
+      background: #5f5f5f !important;
+    }
+
+    ul#headers li a,
+    #stats_lines li a {
+      outline: none;
+      border: none;
+      border-radius: 0;
+      background: $light;
+      color: $text;
+      padding: 10px 15px 7px 25px;
+
+      &:hover {
+        background: darken($default, 10%);
+      }
+
+      h2 {
+        font-weight: 400;
+        font-size: 1em;
+      }
+
+      &.selected {
+        background: $lightest;
+        border-bottom: 2px solid $accent;
+
+        &:hover {
+          background: darken($default, 15%);
+        }
+      }
+    }
+
+    #stats_lines li a {
+      padding: 7px 15px;
+    }
+
+    ul.toggle_display {
+      border: none;
+    }
+
+    svg {
+      ellipse {
+        fill: $accent;
+      }
+    }
+  }
+}
+
+// 
+// General Styles
+// 
+
+#wrap {
+  background: none;
+  margin-left: 270px;
+  border: none;
+  color: $text;
+  max-width: 900px;
+  // padding-top: 70px !important;
+}
+
+.notice {
+  width: calc(100% - 22px);
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: $accent;
+  border: 1px solid $accent;
+  padding: 10px;
+
+  p {
+    color: white;
+  }
+}
+
+#shareboxes {
+  margin-top: -10px;
+}
+
+#sharebox {
+  width: 558px;
+  margin-right: 0px;
+}
+
+div.share {
+  background: $default;
+  border-radius: 0;
+  border: none;
+  padding: 0px 20px 10px;
+  margin-top: 10px;
+
+  textarea {
+    background: $light;
+    color: $text;
+    border: none;
+    padding: 3px;
+    outline: none;
+    margin: 1px !important;
+  }
+
+  #charcount {
+    padding-left: 5px;
+    color: $text;
+  }
+
+  #share_links a {
+    color: $text;
+  }
+}
+
+.sub_wrap,
+.plugins main {
+  background: $default;
+  padding: 10px;
+  padding: 5px 25px;
+
+  span  {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  code,
+  tt {
+    background: rgba(0, 123, 255, 0.7);  
+    
+    @if ($theme == "light") {
+      background: rgba(35, 185, 222, 0.5);
+    }
+  }
+
+  a.bookmarklet {
+    border: none;
+    background: #ffffff url(/images/favicon.gif) 4px center no-repeat;
+    color: #3c3c3c;
+    border-radius: 1px;
+    padding: 7px 7px 7px 25px;
+    color: darken(white, 80%) !important;
+
+    &:hover {
+      background: #e0e0e0 url(/images/favicon.gif) 4px center no-repeat;
+    }
+  }
+
+  // Table
+  table.tblSorter {
+    background: $default;
+
+    a {
+      color: $text;
+
+      &:hover {
+        color: darken($text, 30%);
+      }
+    }
+
+    thead tr th,
+    tfoot tr th,
+    th.header {
+      border: none;
+      background-color: $light;
+      padding: 10px;
+    }
+
+    tbody td {
+      background: $lightest;
+      color: $text;
+    }
+  }
+}
+
+#filter_options {
+  padding: 0px 10px !important;
+}
+
+// End General Styles
+
+
+// 
+// Footer
+// 
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 230px;
+  color: #828282;
+  padding: 10px;
+  text-align: left;
+
+  p {
+  background: none;
+  border: none;
+  font-size: 1em;
+
+    a {
+      background: none;
+      padding-left: 0;
+      color: $text;
+
+      &:hover {
+        color: #828282;
+      }
+    }
+  }
+}
+
+// End footer

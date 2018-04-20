@@ -25,3 +25,4 @@ yourls-infos.php
 yourls-loader.php
 assets/.sublime-grunt.cache
 .htaccess
+node_modules

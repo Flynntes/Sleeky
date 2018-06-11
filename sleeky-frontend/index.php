@@ -2,7 +2,7 @@
 include 'header.php';
 ?>
 
-<body>
+<body style="background: url(<?php echo siteURL ?><?php echo backgroundImage ?>) no-repeat;">
 
 <?php
 	// Start YOURLS engine

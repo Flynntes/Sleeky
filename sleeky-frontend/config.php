@@ -22,6 +22,8 @@ define('favicon', '/assets/img/favicon.ico');
 // Logo for your site, displayed on home page
 define('logo', '/assets/img/logo-black.png');
 
+// Background for your site, displayed on home page
+define('backgroundImage', '/assets/img/NAMEofYOURbackgroundFILE.jpg');
 
 // FOOTER
 

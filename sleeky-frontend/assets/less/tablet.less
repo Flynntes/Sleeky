@@ -6,7 +6,7 @@
 // Grid Variables
 // -------------------
 
-@containerWidth: 500px;
+@containerWidth: 100%;
 @columnCount:    12;
 @gutterRatio:    25%;
 @paddingRatio:   100%;
@@ -25,7 +25,7 @@
 @import "_variables.less"; // site variables
 @import "_mixins.less"; // grid and mixins	
 
-@media (min-width: 501px) and (max-width: 959px) {
+@media (min-width: 701px) and (max-width: 959px) {
 	
 	@import "_layout.less";
 	
@@ -33,6 +33,7 @@
 	// Custom Styles
 	// -------------------
 	.logo {
+		min-width: 100%;
 		float: none;
 	}
 

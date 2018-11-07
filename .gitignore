@@ -26,3 +26,6 @@ yourls-loader.php
 assets/.sublime-grunt.cache
 .htaccess
 node_modules
+/sleeky-frontend/assets/css/tablet.css
+/sleeky-frontend/assets/css/mobile.css
+/sleeky-frontend/assets/css/base.css

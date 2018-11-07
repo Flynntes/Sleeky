@@ -21,7 +21,18 @@
     <link rel="stylesheet" href="<?php echo siteURL ?>assets/css/tablet.css">
     <link rel="stylesheet" href="<?php echo siteURL ?>assets/css/desktop.css">
 
-    <?php if (colour) : ?>
+    <?php if (defined('backgroundImage')) : ?>
+      <style>
+        body,
+        .success-screen {
+          background: url(<?php echo backgroundImage ?>) no-repeat center center fixed; 
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+        }
+      </style>
+    <?php elseif (defined('colour')) : ?>
       <style>
         body {
           background-color: <?php echo colour ?>;

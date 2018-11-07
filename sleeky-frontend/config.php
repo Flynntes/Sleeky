@@ -24,9 +24,12 @@ define('logo', '/assets/img/logo-black.png');
 // Optional
 // Set a primary colour to be used. Default: #007bff
 // Here are some other colours you could try:
-// #f44336: red, #9c27b0: purple, #00bcd4: teal, #ff5722: orange, 
+// #f44336: red, #9c27b0: purple, #00bcd4: teal, #ff5722: orange
 define('colour', '#007bff');
 
+// Optional
+// Set a background image to be used.
+define('backgroundImage', 'https://images.unsplash.com/photo-1524721696987-b9527df9e512');
 
 // FOOTER
 

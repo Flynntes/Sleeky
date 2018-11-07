@@ -1,4 +1,7 @@
-<?php include 'config.php'; ?>
+<?php
+  include 'config.php';
+  include 'functions.php';
+?>
 <html lang="en">
   <head>
 
@@ -10,22 +13,37 @@
 
     <title><?php echo title ?></title>
 
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800|Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.5/clipboard.min.js"></script>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400|Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 
     <link rel="stylesheet" href="<?php echo siteURL ?>assets/css/base.css">
     <link rel="stylesheet" href="<?php echo siteURL ?>assets/css/mobile.css">
     <link rel="stylesheet" href="<?php echo siteURL ?>assets/css/tablet.css">
     <link rel="stylesheet" href="<?php echo siteURL ?>assets/css/desktop.css">
 
-    <script src="<?php echo siteURL ?>assets/js/vendor/modernizr-2.6.2.min.js"></script>   
+    <?php if (colour) : ?>
+      <style>
+        body {
+          background-color: <?php echo colour ?>;
+        }
 
+        input[type="submit"],
+        .short-url-button {
+          background-color: <?php echo colour ?>;
+        }
+
+        input[type="submit"]:hover,
+        .short-url-button:hover {
+          background-color: <?php echo adjustBrightness(colour, -15) ?>;
+        }
+
+        .success-screen {
+          background-color: <?php echo colour ?>;
+        }
+      </style>
+    <?php endif; ?>
+
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.5/clipboard.min.js"></script>
 
     <!-- Add extra support of older browsers -->
     <!--[if lt IE 9]>

@@ -1,7 +1,6 @@
 <?php 
 // CONFIG - These control the look and details on your site. Consult documentation for more details.
 
-
 // GENERAL
 
 // Site URL
@@ -21,6 +20,12 @@ define('favicon', '/assets/img/favicon.ico');
 
 // Logo for your site, displayed on home page
 define('logo', '/assets/img/logo-black.png');
+
+// Optional
+// Set a primary colour to be used. Default: #007bff
+// Here are some other colours you could try:
+// #f44336: red, #9c27b0: purple, #00bcd4: teal, #ff5722: orange, 
+define('colour', '#007bff');
 
 
 // FOOTER

@@ -50,4 +50,5 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask("dev", ["less:compile", "watch:styles"]);
+    grunt.registerTask("build", ["less:compile"]);
 };

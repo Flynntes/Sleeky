@@ -29,7 +29,7 @@ define('colour', '#007bff');
 
 // Optional
 // Set a background image to be used.
-define('backgroundImage', 'https://images.unsplash.com/photo-1524721696987-b9527df9e512');
+// define('backgroundImage', 'https://images.unsplash.com/photo-1524721696987-b9527df9e512');
 
 // FOOTER
 

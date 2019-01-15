@@ -40,7 +40,7 @@ include 'header.php';
 ?>
 
 	
-<?php if( $status == 'success' ):  ?>
+<?php if( isset($status) && $status == 'success' ):  ?>
 
 	<?php $url = preg_replace("(^https?://)", "", $shorturl );  ?>
 

@@ -29,7 +29,9 @@ define('colour', '#007bff');
 
 // Optional
 // Set a background image to be used.
-// define('backgroundImage', 'https://images.unsplash.com/photo-1524721696987-b9527df9e512');
+// default: unsplash.com random daily photo of the day
+// More possibilities of photo embedding from unsplash could be found at: https://source.unsplash.com
+// define('backgroundImage', 'https://source.unsplash.com/daily');
 
 // FOOTER
 

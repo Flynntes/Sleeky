@@ -13,7 +13,7 @@ define('title', 'Sleeky theme for YOURLS');
 define('shortTitle', 'Sleeky');
 
 // A description of your site, shown on the homepage.
-define('description', 'A quick description on why your site is so fantastic, what it does and why people should definetly start using it. Oh, and how it’s free.'); 
+define('description', 'A quick description on why your site is so fantastic, what it does and why people should definitely start using it. Oh, and how it’s free.'); 
 
 // The favicon for your site
 define('favicon', '/assets/img/favicon.ico');

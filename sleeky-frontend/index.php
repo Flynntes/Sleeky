@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include 'frontend/header.php'; ?>
 
 <body>
 
@@ -87,7 +87,7 @@
 					<input type="url" name="url" class="url" id="url" placeholder="PASTE URL, SHORTEN &amp; SHARE" required>
 					<input type="submit" value="Shorten">
 					<?php if (enableCustomURL): ?>
-						<span class="customise-button" id="customise-toggle"><img src="<?php echo siteURL ?>/assets/svg/custom-url.svg" alt="Options"> Customise Link</span>
+						<span class="customise-button" id="customise-toggle"><img src="<?php echo siteURL ?>/frontend/assets/svg/custom-url.svg" alt="Options"> Customise Link</span>
 						<div class="customise-container" id="customise-link" style="display:none;">
 							<span><?php echo preg_replace("(^https?://)", "", siteURL ); ?>/</span>
 							<input type="text" name="keyword" class="custom" placeholder="CUSTOM URL">
@@ -108,6 +108,6 @@
 		</div>
 	</div>
 <?php endif; ?>
-<?php include 'footer.php'; ?>
+<?php include 'frontend/footer.php'; ?>
 </body>
 </html>

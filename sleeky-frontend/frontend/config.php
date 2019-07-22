@@ -16,10 +16,10 @@ define('shortTitle', 'Sleeky');
 define('description', 'A quick description on why your site is so fantastic, what it does and why people should definitely start using it. Oh, and how it’s free.'); 
 
 // The favicon for your site
-define('favicon', '/assets/img/favicon.ico');
+define('favicon', '/frontend/assets/img/favicon.ico');
 
 // Logo for your site, displayed on home page
-define('logo', '/assets/img/logo-black.png');
+define('logo', '/frontend/assets/img/logo-black.png');
 
 // Enables the custom URL field
 // true or false

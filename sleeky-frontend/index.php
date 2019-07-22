@@ -45,7 +45,7 @@
 	<section class="success-screen">
 		<div class="container verticle-center">
 			<div class="main-content">
-				<div class="close">
+				<div class="close noselect">
 				    <a href="<?php echo siteURL ?>"><i class="material-icons">close</i></a>
 				</div>
 				<section class="head">
@@ -53,7 +53,7 @@
 				</section>
 				<section class="link-section">
 					<input type="text" class="short-url" disabled style="text-transform:none;" value="<?php echo $shorturl; ?>">
-					<button class="short-url-button" data-clipboard-text="<?php echo $shorturl; ?>">Copy</button>
+					<button class="short-url-button noselect" data-clipboard-text="<?php echo $shorturl; ?>">Copy</button>
 					<span class="info">View info &amp; stats at <a href="<?php echo $shorturl; ?>+"><?php echo $url; ?>+</a></span>
 				</section>
 			</div>
@@ -70,7 +70,7 @@
 	<div class="container verticle-center main">
 		<div class="main-content">
 			<div class="above">
-				<img src="<?php echo siteURL ?><?php echo logo ?>" alt="Logo" width="95px">
+				<img class="noselect" src="<?php echo siteURL ?><?php echo logo ?>" alt="Logo" width="95px">
 			</div>
 			<section class="head">
 				<p><?php echo description ?></p>
@@ -87,7 +87,7 @@
 					<input type="url" name="url" class="url" id="url" placeholder="PASTE URL, SHORTEN &amp; SHARE" required>
 					<input type="submit" value="Shorten">
 					<?php if (enableCustomURL): ?>
-						<span class="customise-button" id="customise-toggle"><img src="<?php echo siteURL ?>/frontend/assets/svg/custom-url.svg" alt="Options"> Customise Link</span>
+						<span class="customise-button noselect" id="customise-toggle"><img src="<?php echo siteURL ?>/frontend/assets/svg/custom-url.svg" alt="Options"> Customise Link</span>
 						<div class="customise-container" id="customise-link" style="display:none;">
 							<span><?php echo preg_replace("(^https?://)", "", siteURL ); ?>/</span>
 							<input type="text" name="keyword" class="custom" placeholder="CUSTOM URL">

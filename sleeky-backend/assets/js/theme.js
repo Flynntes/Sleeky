@@ -7,9 +7,6 @@
 console.log("Sleeky Admin Theme Running");
 
 $( document ).ready(function() {
-  // Remove javascript warning
-  $("#javascript_error").hide();
-
   // Get the theme URL
   var url;
   if ($('meta[name=pluginURL]').attr("content")) {
@@ -30,7 +27,10 @@ $( document ).ready(function() {
   console.log("Theme is", theme)
 
   // Update favicon
-  $('link[rel="shortcut icon"]').attr('href', url + "/assets/img/favicon.ico")
+  $('link[rel="shortcut icon"]').attr('href', url + "/assets/img/favicon.ico");
+
+  // Update meta viewport
+  $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
 
   // Detect pages
   if ($("body").hasClass("login")) {
@@ -51,7 +51,7 @@ $( document ).ready(function() {
     handleNav()
 
     // Add content padding to suit new URL section
-    $("#wrap").css("padding-top", "80px");
+    // $("#wrap").css("padding-top", "50px");
 
     // Hide YOURLS new URL section
     $("#new_url").hide();
@@ -94,7 +94,6 @@ $( document ).ready(function() {
 
     $("#historical_clicks li").each(function (index) {
       if (index % 2 != 0) {
-        console.log(index, "Odd")
         $("#historical_clicks li").eq(index).css("background", "#464646");
       }
     })
@@ -106,8 +105,16 @@ $( document ).ready(function() {
     // Add logo
     $("#wrap").prepend(`<img class="logo" src="${url}/assets/img/logo_white.png">`);
 
+    // Add mobile nav hamburger
+    $("#wrap").prepend(`<div class="nav-open" id="navOpen"><i class="material-icons">menu</i></div>`);
+
     // Add frontend link
     $('#admin_menu').append('<li class="admin_menu_toplevel"><a href="/"><i class="material-icons">arrow_back</i> Frontend Interface</a></li>');
+
+    // admin_menu
+    $('#navOpen').on('click', function() {
+      $('#admin_menu').slideToggle();
+    })
   }
 
   // Update P elements
@@ -121,7 +128,6 @@ $( document ).ready(function() {
         var content = $(this).html();
         var i = 77
         var updated_content = "Running on" + content.slice(13, i) + '& <a href="https://sleeky.flynntes.com/" title="Sleeky">Sleeky</a>' + content.slice(i-1)
-        console.log(updated_content);
         $(this).html(updated_content);
       }
   });

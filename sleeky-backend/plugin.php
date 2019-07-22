@@ -47,12 +47,6 @@ function sleeky_head_scripts() {
 }
 
 // Inject Sleeky files
-yourls_add_action( 'html_logo', 'enable_js' );
-
-function enable_js() {
-	echo "<div id='javascript_error'>Enable Javascript for Sleeky to work correctly.</div>";
-}
-
 
 function setTheme($theme) {
 	$url = yourls_plugin_url( __DIR__ );

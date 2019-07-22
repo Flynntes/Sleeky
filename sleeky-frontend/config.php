@@ -3,8 +3,8 @@
 
 // GENERAL
 
-// Site URL
-define('siteURL', 'http://localhost:8888/');
+// Site URL (no trailing slash)
+define('siteURL', 'http://localhost:8888');
 
 // Page title for your site
 define('title', 'Sleeky theme for YOURLS'); 
@@ -20,6 +20,10 @@ define('favicon', '/assets/img/favicon.ico');
 
 // Logo for your site, displayed on home page
 define('logo', '/assets/img/logo-black.png');
+
+// Enables the custom URL field
+// true or false
+define('enableCustomURL', true);
 
 // Optional
 // Set a primary colour to be used. Default: #007bff
@@ -39,9 +43,9 @@ define('colour', '#007bff');
 // The array follows a title link structure:
 // "TITLE" => "LINK",
 $footerLinks = [
-    "About"   =>  "http://google.com",
-    "Contact" =>  "http://apple.com",
-    "Legal"   =>  "http://example.com",
+    "About"   =>  "https://sleeky.flynntes.com/",
+    "Contact" =>  "https://sleeky.flynntes.com/",
+    "Legal"   =>  "https://sleeky.flynntes.com/",
     "Admin"   =>  "/admin"
 ];
 

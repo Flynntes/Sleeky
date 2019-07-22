@@ -1,4 +1,4 @@
-<script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script>
 	$(document).ready(function() {
@@ -12,8 +12,11 @@
 			window.location = newLocation;
 		}
 
-		$( "#close" ).click(function() {
-			$( "#error" ).fadeOut("slow");
+		$('.hide-if-no-js').removeClass('hide-if-no-js');
+		$('.hide-if-js').hide();
+		
+		$('#customise-toggle').on('click', function (event) {
+			$('#customise-link').slideToggle('show');
 		});
 	});
 </script>

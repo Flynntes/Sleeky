@@ -39,11 +39,28 @@
 
 	.head {
 		text-align: center;
+		width: 75%;
+		padding: 0.5em;
+
+		p {
+			font-size: 0.9em;
+			margin-bottom: 0;
+		}
 	}
 
-	input[type="text"] {
+	form {
+		text-align: center;
+	}
+
+	input.url,
+	input.short-url {
 	    width: 100%;
-	    padding-right: 0;
+		padding-right: 0;
+		font-size: 0.9em;
+	}
+
+	input[type="submit"] {
+		font-size: 0.9em;
 	}
 
 	input[type="submit"] {
@@ -54,7 +71,39 @@
 	    margin-left: 0;
 	}
 
+	.customise-container {
+		font-size: 0.9em;
+
+		input {
+			font-weight: 500;
+		}
+	}
+
 	.footer {
 		font-size: 14px;
+		width: 100%;
+
+		.footer-links {
+			display: block;
+		}
+
+		span {
+			padding: 0 0.5em;
+		}
+	}
+}
+
+@media (max-width: 340px) {
+	.main-content {
+		margin-top: 30%;
+    	margin-bottom: 30%;
+	}
+
+	input.url {
+		font-size: 0.8em;
+	}
+
+	input[type="submit"] {
+		font-size: 0.8em;
 	}
 }

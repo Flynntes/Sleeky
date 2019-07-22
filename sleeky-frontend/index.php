@@ -1,6 +1,4 @@
-<?php
-include 'header.php';
-?>
+<?php include 'header.php'; ?>
 
 <body>
 
@@ -8,7 +6,7 @@ include 'header.php';
 	// Start YOURLS engine
 	require_once( dirname(__FILE__).'/includes/load-yourls.php' );
 
-	// Change this to match the URL of your public interface.
+	// URL of the public interface
 	$page = YOURLS_SITE . '/index.php' ;
 
 	// Part to be executed if FORM has been submitted
@@ -54,7 +52,7 @@ include 'header.php';
 					<h2>YOUR SHORTENED LINK:</h2>
 				</section>
 				<section class="link-section">
-					<input type="text" class="short-url" style="text-transform:none;" value="<?php echo $shorturl; ?>">
+					<input type="text" class="short-url" disabled style="text-transform:none;" value="<?php echo $shorturl; ?>">
 					<button class="short-url-button" data-clipboard-text="<?php echo $shorturl; ?>">Copy</button>
 					<span class="info">View info &amp; stats at <a href="<?php echo $shorturl; ?>+"><?php echo $url; ?>+</a></span>
 				</section>
@@ -63,12 +61,6 @@ include 'header.php';
 
     <script>
 	    var clipboard = new Clipboard('.short-url-button');
-	    clipboard.on('success', function(e) {
-	        console.log(e);
-	    });
-	    clipboard.on('error', function(e) {
-	        console.log(e);
-	    });
     </script>
 
 <?php else: ?>
@@ -85,28 +77,37 @@ include 'header.php';
 			</section>
 			<section class="field-section">
 				<?php if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ): ?>
-					<?php  if (strpos($message,'added') === false): ?>
-						<div id="error" class="alert alert-warning error" role="alert"><h5>Oh no, <?php echo $message; ?>!</h5><a id="close" class="close" href="#"><i class="material-icons">close</i></a></div>	    
+					<?php if (strpos($message,'added') === false): ?>
+						<div id="error" class="alert alert-warning error" role="alert">
+							<h5>Oh no, <?php echo $message; ?>!</h5>
+						</div>	    
 					<?php endif; ?>
 				<?php endif; ?>
 				<form method="post" action="">
-					<input type="text" name="url" class="url" placeholder="PASTE URL, SHORTEN &amp; SHARE">
+					<input type="url" name="url" class="url" id="url" placeholder="PASTE URL, SHORTEN &amp; SHARE" required>
 					<input type="submit" value="Shorten">
+					<?php if (enableCustomURL): ?>
+						<span class="customise-button" id="customise-toggle"><img src="<?php echo siteURL ?>/assets/svg/custom-url.svg" alt="Options"> Customise Link</span>
+						<div class="customise-container" id="customise-link" style="display:none;">
+							<span><?php echo preg_replace("(^https?://)", "", siteURL ); ?>/</span>
+							<input type="text" name="keyword" class="custom" placeholder="CUSTOM URL">
+						</div>
+					<?php endif; ?>
 				</form>
 			</section>
 			<section class="footer">
 		<div>
 			<span class="light">&copy; <?php echo date("Y"); ?> <?php echo shortTitle ?></span>
-			<?php foreach ($footerLinks as $key => $val): ?>
-		    	<a href="<?php echo $val ?>"><span><?php echo $key ?></span></a>
-			<?php endforeach ?>
+			<div class="footer-links">
+				<?php foreach ($footerLinks as $key => $val): ?>
+					<a href="<?php echo $val ?>"><span><?php echo $key ?></span></a>
+				<?php endforeach ?>
+			</div>
 		</div>
 	</section>
 		</div>
 	</div>
 <?php endif; ?>
-<?php
-include 'footer.php';
-?>
+<?php include 'footer.php'; ?>
 </body>
 </html>

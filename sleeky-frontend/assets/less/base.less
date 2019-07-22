@@ -39,6 +39,10 @@ body {
 	background-color: @primaryColor; /* Fallback if no value is set in PHP */
 }
 
+h5 {
+    font-size: 1em;
+}
+
 .verticle-center {
 	min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
 	min-height: 100vh; /* These two lines are counted as one :-)       */
@@ -91,7 +95,8 @@ body {
     padding-bottom: 1em;
 }
 
-input[type="text"] {
+input.url,
+input.short-url {
 	background-color: @baseColor;
     padding-right: 50px;
     display: inline;
@@ -104,7 +109,7 @@ input[type="text"] {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     color: #000;
-    text-transform: uppercase;
+
     &:hover,:active, &:focus {
     	border: 1px solid @baseColor;
     }
@@ -119,6 +124,54 @@ input::-webkit-input-placeholder { .transition(color 0.2s ease-in-out); }
 input:-moz-placeholder { .transition(color 0.2s ease-in-out); } /* FF 4-18 */
 input::-moz-placeholder { .transition(color 0.2s ease-in-out); } /* FF 19+ */
 input:-ms-input-placeholder { .transition(color 0.2s ease-in-out); } /* IE 10+ */
+
+.customise-button {
+    font-size: 0.8em;
+    color: #757575;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s all;
+
+    img {
+        width: 18px;
+        margin-top: 1px;
+    }
+
+    &:hover {
+        background: #ebebeb;
+    }
+}
+
+.customise-container {
+    margin-top: 20px;
+    padding-left: 5px;
+
+    span {
+        display: inline-block;
+        padding-top: 1px;
+        font-family: Montserrat,sans-serif;
+    }
+
+    input {
+        background-color: @baseColor;
+        display: inline;
+        vertical-align: top;
+        width: 50%;
+        border-radius: 6px;
+        height: 2em;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 0.8em;
+        color: #000;
+        &:hover,:active, &:focus {
+            border: 1px solid @baseColor;
+        }
+    }
+}
 
 input[type="submit"],
 .short-url-button {
@@ -159,10 +212,16 @@ input[type="submit"],
 	font-weight: 700;
 	font-size: 1em;
 	text-align: center;
-	z-index: 99999;
+    z-index: 99999;
+    
     & span {
     	padding-right: 1.5em;
     }
+
+    .footer-links {
+        display: inline;
+    }
+
     a {
     	color: white;
     	.transition(color 0.1s ease-in-out);
@@ -217,9 +276,8 @@ input[type="submit"],
 .error {
     color: #F44336;
     text-align: center;
-}
 
-.close {
-    color: white;
-    padding: 0.3em;
+    h5 {
+        overflow-wrap: break-word;
+    }
 }

@@ -3,8 +3,8 @@
 
 // Mobile mixin
 @mixin for-size($range) {
-    $phone-upper-boundary: 600px;
-    $tablet-portrait-upper-boundary: 900px;
+    $phone-upper-boundary: 900px;
+    $tablet-portrait-upper-boundary: 1100px;
     $tablet-landscape-upper-boundary: 1200px;
     $desktop-upper-boundary: 1800px;
 
@@ -162,8 +162,8 @@ select:hover {
   font-size: 1.1em;
   font-weight: 500;
   position: static;
-  margin-top: 67px;
-  margin-bottom: -80px;
+  margin-top: 30px;
+  margin-bottom: -45px;
   padding: 10px;
 
   a, a:link, a:active, a:visited {
@@ -245,14 +245,13 @@ select:hover {
 //
 .index {
   #add-url {
-    width: 300px;
+    width: 200px;
   }
 
   #new_url_form {
     box-sizing: border-box;
-    height: 85px;
     overflow: hidden;
-    min-width: 900px;
+    // min-width: 900px;
   }
 
   #new_url {
@@ -287,16 +286,16 @@ select:hover {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 85px;
+    height: 50px;
 
     @if ($theme == "light") {
-      background: $accent;
+      background: darken($accent, 10%);
     } @else {
       background: $default;
     }
 
     label {
-      font-size: 1.2em;
+      font-size: 1em;
       font-weight: 600;
       color: $text;
 
@@ -307,9 +306,9 @@ select:hover {
 
     input.text {
       width: 360px;
-      padding: 10px;
+      padding: 4px;
       font-weight: 200;
-      font-size: 1.2em !important;
+      font-size: 1em !important;
 
       @if ($theme == "light") {
         background: $default !important;
@@ -319,22 +318,18 @@ select:hover {
     }
 
     .short {
-      padding-left: 20px;
-    }
-
-    #add-url {
-      width: 250px;
+      padding-left: 10px;
     }
 
     #add-keyword {
-      width: 200px;
+      width: 100px;
     }
 
     input.button {
       font-weight: 500;
-      padding: 10px 25px;
-      font-size: 1.2em !important;
-      margin-left: 20px !important;
+      padding: 5px 10px;
+      font-size: 1em !important;
+      margin-left: 10px !important;
       background: $lightest !important;
 
       @if ($theme == "light") {
@@ -352,9 +347,9 @@ select:hover {
       }
     }
 
-    form {
-      margin-left: 300px;
-      padding: 23px !important;
+    #new_url_form {
+      margin-left: 260px;
+      padding: 12px;
     }
   }
 
@@ -481,7 +476,7 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 90px 30px;
+  padding: 50px 30px;
   width: 200px;
   z-index: 10;
 
@@ -520,13 +515,29 @@ nav {
 }
 
 img.logo {
-  width: 150px;
+  width: 90px;
   position: fixed;
   top: 0;
   left: 0;
   background: $accent;
-  padding: 15px 55px;
+  padding: 9px 150px 8px 20px;
   z-index: 20;
+}
+
+.nav-open {
+  color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 30;
+  padding: 10px 15px;
+  cursor: pointer;
+  display: none;
+
+  i {
+    font-size: 2em;
+    line-height: 30px;
+  }
 }
 
 header {
@@ -560,7 +571,7 @@ header {
     }
 
     #historical_clicks li:hover {
-      background: #5f5f5f !important;
+      background: darken($default, 10%) !important;
     }
 
     ul#headers li a,
@@ -611,13 +622,16 @@ header {
 // General Styles
 // 
 
+body.index #wrap {
+  padding-top: 50px;
+}
+
 #wrap {
   background: none;
   margin-left: 270px;
   border: none;
   color: $text;
-  max-width: 900px;
-  // padding-top: 70px !important;
+  max-width: 100%;
 }
 
 .notice {
@@ -670,10 +684,12 @@ div.share {
 }
 
 .sub_wrap,
-.plugins main {
+.plugins main,
+.plugin_page_sleeky_settings main {
   background: $default;
   padding: 10px;
   padding: 5px 25px;
+  max-width: 100%;
 
   span  {
     background: rgba(255, 255, 255, 0.2);
@@ -746,6 +762,7 @@ div.share {
   color: #828282;
   padding: 10px;
   text-align: left;
+  z-index: 10;
 
   p {
   background: none;
@@ -765,3 +782,159 @@ div.share {
 }
 
 // End footer
+
+// Mobile styles
+@include for-size(phone-only) {
+  body.index #wrap {
+    padding-top: 210px;
+  }
+  
+  body.tools #wrap,
+  body.plugins #wrap,
+  body.plugin_page_sleeky_settings #wrap {
+    padding-top: 50px;
+  }
+  #wrap {
+    margin-left: 0;
+
+    main {
+      overflow-x: scroll;
+    }
+  }
+
+  img.logo {
+    padding: 9px 100% 8px 20px;
+  }
+
+  .nav-open {
+    display: block;
+  }
+
+  nav {
+    height: 0;
+    padding: 0;
+    width: 0;
+
+    ul#admin_menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999 !important;
+      width: 100%;
+      height: 100%;
+      padding: 50px;
+      display: none;
+      @if ($theme == "light") {
+        background: darken($accent, 10%);
+      } @else {
+        background: $default;
+      }
+
+      li {
+        color: white;
+      }
+
+      a, a:link, a:active, a:visited {
+        color: white;
+      }
+    }
+  }
+
+  .index {
+    .top {
+      display: block;
+      margin-top: 50px;
+      width: 100vw;
+      height: auto;
+
+      form {
+        margin-left: 0 !important;
+      }
+
+      #new_url_form {
+        min-width: unset;
+        height: auto;
+      }
+
+      .short {
+        padding: 0;
+      }
+
+      #add-url,
+      #add-keyword {
+        width: calc(100% - 10px);
+        margin: 10px 0px !important;
+      }
+
+      input.button {
+        margin: 0 !important;
+        width: 100%;
+      }
+    }
+    
+    table.tblSorter {
+      min-width: 600px;
+
+      // Icons
+      $icons-list: stats, share, edit, delete;
+      @each $icon in $icons-list {
+        td.actions .button_#{$icon} { 
+          background-size: 15px;
+          margin: 3px;
+        }
+      }
+    }
+  }
+  
+  #copybox {
+    width: 100%;
+  }
+
+  .jquery-notify-bar {
+    margin-top: 210px;
+    margin-bottom: -210px;
+    width: calc(100vw - 20px);
+
+    a {
+      margin-left: -30px;
+    }
+  }
+
+  #footer {
+    display: none;
+  }
+
+  .infos #wrap {
+    margin-top: 30px;
+    
+
+    #headers {
+      li {
+        margin: 0;
+        display: inline-block;
+      }
+    }
+  }
+
+  .infos #tabs {
+    min-width: initial;
+
+    .tab {
+      overflow: scroll;
+    }
+
+    ul#headers {
+      margin: 20px 0;
+
+      li {
+        a {
+          padding: 10px 5px;
+        }
+
+        h2 {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

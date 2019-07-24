@@ -3,7 +3,7 @@
 Plugin Name: Sleeky Backend
 Plugin URI: https://sleeky.flynntes.com
 Description: UI overhaul of the YOURLS backend
-Version: 2.0
+Version: 3.0
 Author: Flynn Tesoriero
 Author URI: https://flynntes.com
 */
@@ -47,12 +47,6 @@ function sleeky_head_scripts() {
 }
 
 // Inject Sleeky files
-yourls_add_action( 'html_logo', 'enable_js' );
-
-function enable_js() {
-	echo "<div id='javascript_error'>Enable Javascript for Sleeky to work correctly.</div>";
-}
-
 
 function setTheme($theme) {
 	$url = yourls_plugin_url( __DIR__ );
@@ -110,21 +104,20 @@ function sleeky_do_settings_page() {
 	$nonce = yourls_create_nonce( 'sleeky_settings' );
 
 	echo <<<HTML
-		<h2>Sleeky Settings</h2>
-		<!-- <p>This plugin stores an integer in the option database</p> -->
-		<form method="post">
-		<input type="hidden" name="nonce" value="$nonce" />
-		<p>
-			<label>Theme</label>
-			<select name="theme_choice" size="1" value="$theme_choice" id="ui_selector">
-				<option value="dark">Dark</option>
-				<option value="light">Light</option>
-			</select>
-		</p>
-		<!-- <p><label for="theme_choice">Enter an integer</label> <input type="text" id="theme_choice" name="theme_choice" value="$theme_choice" /></p> -->
-		<p><input type="submit" value="Save" class="button" /></p>
-		</form>
-
+		<main>
+			<h2>Sleeky Settings</h2>
+			<form method="post">
+			<input type="hidden" name="nonce" value="$nonce" />
+			<p>
+				<label>Theme</label>
+				<select name="theme_choice" size="1" value="$theme_choice" id="ui_selector">
+					<option value="dark">Dark</option>
+					<option value="light">Light</option>
+				</select>
+			</p>
+			<p><input type="submit" value="Save" class="button" /></p>
+			</form>
+		</main>
 HTML;
 }
 

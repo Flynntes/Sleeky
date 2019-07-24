@@ -571,7 +571,7 @@ header {
     }
 
     #historical_clicks li:hover {
-      background: #5f5f5f !important;
+      background: darken($default, 10%) !important;
     }
 
     ul#headers li a,
@@ -684,7 +684,8 @@ div.share {
 }
 
 .sub_wrap,
-.plugins main {
+.plugins main,
+.plugin_page_sleeky_settings main {
   background: $default;
   padding: 10px;
   padding: 5px 25px;
@@ -901,5 +902,39 @@ div.share {
 
   #footer {
     display: none;
+  }
+
+  .infos #wrap {
+    margin-top: 30px;
+    
+
+    #headers {
+      li {
+        margin: 0;
+        display: inline-block;
+      }
+    }
+  }
+
+  .infos #tabs {
+    min-width: initial;
+
+    .tab {
+      overflow: scroll;
+    }
+
+    ul#headers {
+      margin: 20px 0;
+
+      li {
+        a {
+          padding: 10px 5px;
+        }
+
+        h2 {
+          margin: 0;
+        }
+      }
+    }
   }
 }

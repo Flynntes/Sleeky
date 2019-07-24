@@ -94,9 +94,17 @@ $( document ).ready(function() {
 
     $("#historical_clicks li").each(function (index) {
       if (index % 2 != 0) {
-        $("#historical_clicks li").eq(index).css("background", "#464646");
+        $("#historical_clicks li").eq(index).css("background", "");
       }
     })
+
+    // Update tab headers
+    var titles = ['Statistics', 'Location', 'Sources']
+    for (let i = 0; i < 3; i++) {
+      $($('#headers > li')[i]).find('h2').text(titles[i]);
+    }
+
+    // console.log();
   } else {
     console.warn("Unknown page")
   }
@@ -115,6 +123,14 @@ $( document ).ready(function() {
     $('#navOpen').on('click', function() {
       $('#admin_menu').slideToggle();
     })
+
+    $(window).resize(function () {
+      if ($(window).width() > 899) {
+        $('#admin_menu').show();
+      } else {
+        $('#admin_menu').hide();
+      }
+    });
   }
 
   // Update P elements

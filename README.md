@@ -9,8 +9,8 @@ Sleeky is split into two parts - **frontend** and **backend**.
 [**Sleeky website & demo**](https://sleeky.flynntes.com)
 
 # Screenshots
-![Frontend Screenshot](https://sleeky.flynntes.com/assets/img/slides/frontend.png)
-![Backend Screenshot](https://sleeky.flynntes.com/assets/img/slides/light_index.png)
+![Frontend Screenshot](http://sleeky.flynntes.com/assets/img/slides/frontend.png)
+![Backend Screenshot](http://sleeky.flynntes.com/assets/img/slides/light_index.png)
 
 ## Quick Start
 1. Get a YOURLS install up and running.

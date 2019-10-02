@@ -38,9 +38,9 @@ $( document ).ready(function() {
     console.log("Login page");
 
     if (theme == "light") {
-      $("#login").prepend(`<img src="${url}/assets/img/logo_black.png">`);
+      $("#login").prepend(`<img class="login-logo" src="${url}/assets/img/logo_black.png">`);
     } else if (theme == "dark") {
-      $("#login").prepend(`<img src="${url}/assets/img/logo_white.png">`);
+      $("#login").prepend(`<img class="login-logo" src="${url}/assets/img/logo_white.png">`);
     }
 
     

@@ -1,8 +1,5 @@
 // Sleeky Admin Theme
-// 2018 Flynn Tesoriero
-
-// TODO
-// Add theme URL config option (sleeky-backend)
+// 2019 Flynn Tesoriero
 
 console.log("Sleeky Admin Theme Running");
 
@@ -38,9 +35,9 @@ $( document ).ready(function() {
     console.log("Login page");
 
     if (theme == "light") {
-      $("#login").prepend(`<img src="${url}/assets/img/logo_black.png">`);
+      $("#login").prepend(`<img class="login-logo" src="${url}/assets/img/logo_black.png">`);
     } else if (theme == "dark") {
-      $("#login").prepend(`<img src="${url}/assets/img/logo_white.png">`);
+      $("#login").prepend(`<img class="login-logo" src="${url}/assets/img/logo_white.png">`);
     }
 
     
@@ -49,9 +46,6 @@ $( document ).ready(function() {
     console.log("Index page");
 
     handleNav()
-
-    // Add content padding to suit new URL section
-    // $("#wrap").css("padding-top", "50px");
 
     // Hide YOURLS new URL section
     $("#new_url").hide();
@@ -103,10 +97,10 @@ $( document ).ready(function() {
     for (let i = 0; i < 3; i++) {
       $($('#headers > li')[i]).find('h2').text(titles[i]);
     }
-
-    // console.log();
   } else {
-    console.warn("Unknown page")
+    console.warn("Unknown page");
+    
+    handleNav();
   }
 
   function handleNav() {

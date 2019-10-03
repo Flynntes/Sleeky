@@ -70,21 +70,16 @@ input {
   @if ($theme == "light") {
     border-radius: 3px !important;
   }
-
-  // @if (lightness($light) > 40) {
-  //   color: red !important;
-  // }
-  // @else {
-  //   color: blue !important;
-  // }
 }
 
 input.button,
-input.submit {
+input.submit,
+input[type="submit"] {
   border-left: 7px solid $accent !important;
   background: $light !important;
   font-weight: 600;
   transition: 0.3s all !important;
+  cursor: pointer;
 
   @if ($theme == "light") {
     background: $accent !important;
@@ -96,7 +91,8 @@ input.submit {
 
 // Need to fix this, because I've had to copy this down lower to make it apply to the add URL button
 input.button:hover,
-input.submit:hover {
+input.submit:hover,
+input[type="submit"]:hover {
   background: darken($accent, 15%) !important;
 
   @if ($theme == "light") {
@@ -104,12 +100,14 @@ input.submit:hover {
   }
 }
 
-input[type="button"]:disabled {
+input[type="button"]:disabled,
+input[type="submit"]:disabled {
   cursor: not-allowed;
 }
 
-input.text {
-  border: 1px solid transparent !important;
+input.text,
+input[type="text"] {
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
   transition: 0.4s all;
 }
 
@@ -197,7 +195,7 @@ select:hover {
     font-weight: 600;
   }
 
-  img {
+  .login-logo {
     width: 150px;
     margin: 30px auto;
     display: flex;
@@ -549,7 +547,7 @@ header {
 //
 // Information
 // 
-.infos {
+#wrap {
   #tabs {
     min-width: 580px;
 
@@ -685,7 +683,8 @@ div.share {
 
 .sub_wrap,
 .plugins main,
-.plugin_page_sleeky_settings main {
+.plugin_page_sleeky_settings main,
+code {
   background: $default;
   padding: 10px;
   padding: 5px 25px;

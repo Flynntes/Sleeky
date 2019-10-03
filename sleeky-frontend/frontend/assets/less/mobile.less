@@ -59,16 +59,14 @@
 		font-size: 0.9em;
 	}
 
-	input[type="submit"] {
-		font-size: 0.9em;
-	}
-
-	input[type="submit"] {
+	input[type="submit"],
+	.short-url-button {
 		width: 100%;
 	    -webkit-border-radius: 6px;
 	    -moz-border-radius: 6px;
 	    border-radius: 6px;
-	    margin-left: 0;
+		margin-left: 0;
+		font-size: 0.9em;
 	}
 
 	.customise-container {
@@ -90,6 +88,12 @@
 		span {
 			padding: 0 0.5em;
 		}
+	}
+}
+
+@media (max-width: 450px) {
+	.link-section {
+		width: 80%;
 	}
 }
 

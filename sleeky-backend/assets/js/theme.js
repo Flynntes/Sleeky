@@ -1,8 +1,5 @@
 // Sleeky Admin Theme
-// 2018 Flynn Tesoriero
-
-// TODO
-// Add theme URL config option (sleeky-backend)
+// 2019 Flynn Tesoriero
 
 console.log("Sleeky Admin Theme Running");
 
@@ -49,9 +46,6 @@ $( document ).ready(function() {
     console.log("Index page");
 
     handleNav()
-
-    // Add content padding to suit new URL section
-    // $("#wrap").css("padding-top", "50px");
 
     // Hide YOURLS new URL section
     $("#new_url").hide();

@@ -97,10 +97,10 @@ $( document ).ready(function() {
     for (let i = 0; i < 3; i++) {
       $($('#headers > li')[i]).find('h2').text(titles[i]);
     }
-
-    // console.log();
   } else {
-    console.warn("Unknown page")
+    console.warn("Unknown page");
+    
+    handleNav();
   }
 
   function handleNav() {

@@ -70,13 +70,6 @@ input {
   @if ($theme == "light") {
     border-radius: 3px !important;
   }
-
-  // @if (lightness($light) > 40) {
-  //   color: red !important;
-  // }
-  // @else {
-  //   color: blue !important;
-  // }
 }
 
 input.button,
@@ -112,8 +105,9 @@ input[type="submit"]:disabled {
   cursor: not-allowed;
 }
 
-input.text {
-  border: 1px solid transparent !important;
+input.text,
+input[type="text"] {
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
   transition: 0.4s all;
 }
 

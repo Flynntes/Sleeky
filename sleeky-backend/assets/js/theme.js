@@ -111,7 +111,7 @@ $( document ).ready(function() {
     $("#wrap").prepend(`<div class="nav-open" id="navOpen"><i class="material-icons">menu</i></div>`);
 
     // Add frontend link
-    $('#admin_menu').append('<li class="admin_menu_toplevel"><a href="/"><i class="material-icons">arrow_back</i> Frontend Interface</a></li>');
+    $('#admin_menu').append('<li class="admin_menu_toplevel frontend_link"><a href="/"><i class="material-icons">arrow_back</i> Frontend Interface</a></li>');
 
     // admin_menu
     $('#navOpen').on('click', function() {

@@ -46,7 +46,7 @@
 		<div class="container verticle-center">
 			<div class="main-content">
 				<div class="close noselect">
-				    <a href="<?php echo siteURL ?>"><i class="material-icons">close</i></a>
+				    <a href="javascript:window.location.href=window.location.href;"><i class="material-icons">close</i></a>
 				</div>
 				<section class="head">
 					<h2>YOUR SHORTENED LINK:</h2>

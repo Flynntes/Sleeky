@@ -747,6 +747,11 @@ code {
   padding: 0px 10px !important;
 }
 
+body > div > pre {
+  overflow-x: scroll;
+  padding-left: 290px;
+}
+
 // End General Styles
 
 
@@ -935,5 +940,9 @@ code {
         }
       }
     }
+  }
+
+  body > div > pre {
+    padding-left: 20px;
   }
 }

@@ -9,9 +9,41 @@
 	// URL of the public interface
 	$page = YOURLS_SITE . '/index.php' ;
 
+	// Make variables visible to function & UI
+	$shorturl = $message = $title = $status = '';
+
 	// Part to be executed if FORM has been submitted
 	if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ) {
+		if (enableRecaptcha) {
+			// Use reCAPTCHA
+			$token = $_POST['token'];
+			$action = $_POST['action'];
+			
+			// call curl to POST request
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => recaptchaV3SecretKey, 'response' => $token)));
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$response = curl_exec($ch);
+			curl_close($ch);
+			$arrResponse = json_decode($response, true);
+			
+			// verify the response
+			if($arrResponse["success"] == '1' && $arrResponse["action"] == $action && $arrResponse["score"] >= 0.5) {
+				// reCAPTCHA succeeded
+				shorten();
+			} else {
+				// reCAPTCHA failed
+				$message = "reCAPTCHA failed";
+			}
+		} else {
+			// Don't use reCAPTCHA
+			shorten();
+		}
+	}
 
+	function shorten() {
 		// Get parameters -- they will all be sanitized in yourls_add_new_link()
 		$url     = $_REQUEST['url'];
 		$keyword = isset( $_REQUEST['keyword'] ) ? $_REQUEST['keyword'] : '' ;
@@ -21,6 +53,9 @@
 		// Create short URL, receive array $return with various information
 		$return  = yourls_add_new_link( $url, $keyword, $title );
 		
+		// Make visible to UI
+		global $shorturl, $message, $status, $title;
+
 		$shorturl = isset( $return['shorturl'] ) ? $return['shorturl'] : '';
 		$message  = isset( $return['message'] ) ? $return['message'] : '';
 		$title    = isset( $return['title'] ) ? $return['title'] : '';
@@ -83,7 +118,7 @@
 						</div>	    
 					<?php endif; ?>
 				<?php endif; ?>
-				<form method="post" action="">
+				<form id="shortenlink" method="post" action="">
 					<input type="url" name="url" class="url" id="url" placeholder="PASTE URL, SHORTEN &amp; SHARE" required>
 					<input type="submit" value="Shorten">
 					<?php if (enableCustomURL): ?>

@@ -1,4 +1,4 @@
-[![sleeky logo](sleeky-frontend/assets/img/logo-small.png)](https://sleeky.flynntes.com)
+[![sleeky logo](sleeky-frontend/frontend/assets/img/logo-small.png)](https://sleeky.flynntes.com)
 
 Sleeky is a minimal interface package for use with [YOURLS](https://github.com/YOURLS/YOURLS), an open source URL shortener. Sleeky adds a public interface and overhauls the backend (admin) interface. Using this theme you can create your own Bitly / URL shortening site or a shortening site for internal use at companies.
 

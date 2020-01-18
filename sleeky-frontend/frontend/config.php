@@ -21,6 +21,16 @@ define('favicon', '/frontend/assets/img/favicon.ico');
 // Logo for your site, displayed on home page
 define('logo', '/frontend/assets/img/logo-black.png');
 
+// Enable reCAPTCHA V3
+// It is highly recommended you use reCAPTCHA V3. It will stop spam. You can get a site and secret key from here: https://www.google.com/recaptcha/admin/create
+define("enableRecaptcha", true);
+
+// reCAPTCHA V3 Site Key
+define("recaptchaV3SiteKey", 'YOU_SITE_KEY_HERE');
+
+// reCAPTCHA V3 Secret Key
+define("recaptchaV3SecretKey", 'YOU_SECRET_KEY_HERE');
+
 // Enables the custom URL field
 // true or false
 define('enableCustomURL', true);

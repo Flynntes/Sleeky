@@ -3,7 +3,7 @@
 Plugin Name: Sleeky Backend
 Plugin URI: https://sleeky.flynntes.com
 Description: UI overhaul of the YOURLS backend
-Version: 2.3.0
+Version: 2.4.0
 Author: Flynn Tesoriero
 Author URI: https://flynntes.com
 */

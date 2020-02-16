@@ -4,7 +4,7 @@
 // GENERAL
 
 // Site URL (no trailing slash)
-define('siteURL', 'http://localhost:8888');
+define('siteURL', $YOURLS_SITE);
 
 // Page title for your site
 define('title', 'Sleeky theme for YOURLS'); 
@@ -26,10 +26,10 @@ define('logo', '/frontend/assets/img/logo-black.png');
 define("enableRecaptcha", true);
 
 // reCAPTCHA V3 Site Key
-define("recaptchaV3SiteKey", 'YOU_SITE_KEY_HERE');
+define("recaptchaV3SiteKey", 'YOUR_SITE_KEY_HERE');
 
 // reCAPTCHA V3 Secret Key
-define("recaptchaV3SecretKey", 'YOU_SECRET_KEY_HERE');
+define("recaptchaV3SecretKey", 'YOUR_SECRET_KEY_HERE');
 
 // Enables the custom URL field
 // true or false

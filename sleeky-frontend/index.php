@@ -84,7 +84,7 @@
 				    <a href="javascript:window.location.href=window.location.href;"><i class="material-icons">close</i></a>
 				</div>
 				<section class="head">
-					<h2>YOUR SHORTENED LINK:</h2>
+					<h2>Your shortened link:</h2>
 				</section>
 				<section class="link-section">
 					<input type="text" class="short-url" disabled style="text-transform:none;" value="<?php echo $shorturl; ?>">
@@ -119,13 +119,13 @@
 					<?php endif; ?>
 				<?php endif; ?>
 				<form id="shortenlink" method="post" action="">
-					<input type="url" name="url" class="url" id="url" placeholder="PASTE URL, SHORTEN &amp; SHARE" required>
+					<input type="url" name="url" class="url" id="url" placeholder="Paste URL, Shorten &amp; Share" required>
 					<input type="submit" value="Shorten">
 					<?php if (enableCustomURL): ?>
 						<span class="customise-button noselect" id="customise-toggle"><img src="<?php echo siteURL ?>/frontend/assets/svg/custom-url.svg" alt="Options"> Customise Link</span>
 						<div class="customise-container" id="customise-link" style="display:none;">
 							<span><?php echo preg_replace("(^https?://)", "", siteURL ); ?>/</span>
-							<input type="text" name="keyword" class="custom" placeholder="CUSTOM URL">
+							<input type="text" name="keyword" class="custom" placeholder="Custom URL">
 						</div>
 					<?php endif; ?>
 				</form>

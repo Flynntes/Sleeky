@@ -285,6 +285,20 @@
     filter: alpha(opacity=@iefactor);
 }
 
+// Placeholder
+
+.placeholder(@transform) {
+    &::-webkit-input-placeholder {
+        text-transform: @transform; // Chrome, Safari, Opera
+    }
+    &::-moz-placeholder {
+        text-transform: @transform; // Firefox 19+
+    }
+    &:-ms-input-placeholder {
+        text-transform: @transform; // IE 10+
+    }
+}
+
 // Transforms
 
 .transform(@args) {

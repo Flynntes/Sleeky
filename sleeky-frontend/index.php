@@ -14,32 +14,43 @@
 
 	// Part to be executed if FORM has been submitted
 	if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ) {
-		if (enableRecaptcha) {
+		if (captchaProvider == "none") {
+			// Don't use Captcha
+			shorten();
+		} else {
 			// Use reCAPTCHA
 			$token = $_POST['token'];
 			$action = $_POST['action'];
-			
+
 			// call curl to POST request
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+
+			if (captchaProvider == "reCaptchaV3") {
+				curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+			} else {
+				$token = $_POST['h-captcha-response'];
+				curl_setopt($ch, CURLOPT_URL,"https://hcaptcha.com/siteverify");
+			}
+
 			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => recaptchaV3SecretKey, 'response' => $token)));
+			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => captchaSecretKey, 'response' => $token)));
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$response = curl_exec($ch);
 			curl_close($ch);
 			$arrResponse = json_decode($response, true);
-			
+
 			// verify the response
-			if($arrResponse["success"] == '1' && $arrResponse["action"] == $action && $arrResponse["score"] >= 0.5) {
-				// reCAPTCHA succeeded
+			if (captchaProvider == "reCaptchaV3" && $arrResponse["success"] == '1' && $arrResponse["action"] == $action && $arrResponse["score"] >= 0.5) {
+				// Captcha succeeded
+				shorten();
+			} elseif (captchaProvider == "hCaptcha" && $arrResponse["success"]) {
+				// Captcha succeeded
 				shorten();
 			} else {
-				// reCAPTCHA failed
-				$message = "reCAPTCHA failed";
+				// Captcha failed
+				$message = "Captcha failed";
 			}
-		} else {
-			// Don't use reCAPTCHA
-			shorten();
+
 		}
 	}
 
@@ -48,11 +59,10 @@
 		$url     = $_REQUEST['url'];
 		$keyword = isset( $_REQUEST['keyword'] ) ? $_REQUEST['keyword'] : '' ;
 		$title   = isset( $_REQUEST['title'] ) ?  $_REQUEST['title'] : '' ;
-		$text    = isset( $_REQUEST['text'] ) ?  $_REQUEST['text'] : '' ;
 
 		// Create short URL, receive array $return with various information
 		$return  = yourls_add_new_link( $url, $keyword, $title );
-		
+
 		// Make visible to UI
 		global $shorturl, $message, $status, $title;
 
@@ -60,7 +70,7 @@
 		$message  = isset( $return['message'] ) ? $return['message'] : '';
 		$title    = isset( $return['title'] ) ? $return['title'] : '';
 		$status   = isset( $return['status'] ) ? $return['status'] : '';
-		
+
 		// Stop here if bookmarklet with a JSON callback function ("instant" bookmarklets)
 		if( isset( $_GET['jsonp'] ) && $_GET['jsonp'] == 'yourls' ) {
 			$short = $return['shorturl'] ? $return['shorturl'] : '';
@@ -72,7 +82,7 @@
 	}
 ?>
 
-	
+
 <?php if( isset($status) && $status == 'success' ):  ?>
 
 	<?php $url = preg_replace("(^https?://)", "", $shorturl );  ?>
@@ -115,12 +125,12 @@
 					<?php if (strpos($message,'added') === false): ?>
 						<div id="error" class="alert alert-warning error" role="alert">
 							<h5>Oh no, <?php echo $message; ?>!</h5>
-						</div>	    
+						</div>
 					<?php endif; ?>
 				<?php endif; ?>
 				<form id="shortenlink" method="post" action="">
 					<input type="url" name="url" class="url" id="url" placeholder="PASTE URL, SHORTEN &amp; SHARE" required>
-					<input type="submit" value="Shorten">
+					<input type="submit" <?php if (captchaProvider == "hCaptcha"): ?> class="h-captcha" data-sitekey="<?php echo captchaSiteKey ?>" data-callback="onSubmit" <?php endif; ?> value="Shorten">
 					<?php if (enableCustomURL): ?>
 						<span class="customise-button noselect" id="customise-toggle"><img src="<?php echo siteURL ?>/frontend/assets/svg/custom-url.svg" alt="Options"> Customise Link</span>
 						<div class="customise-container" id="customise-link" style="display:none;">

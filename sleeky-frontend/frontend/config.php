@@ -4,7 +4,7 @@
 // GENERAL
 
 // Site URL (no trailing slash)
-define('siteURL', $YOURLS_SITE);
+define('siteURL', YOURLS_SITE);
 
 // Page title for your site
 define('title', 'Sleeky theme for YOURLS'); 

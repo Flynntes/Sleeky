@@ -95,7 +95,7 @@
 	</section>
 
     <script>
-	    var clipboard = new Clipboard('.short-url-button');
+	    var clipboard = new ClipboardJS('.short-url-button');
     </script>
 
 <?php else: ?>

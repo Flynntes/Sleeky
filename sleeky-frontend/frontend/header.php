@@ -54,7 +54,7 @@
       </style>
     <?php endif; ?>
 
-    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.5/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
 
     <!-- Add extra support of older browsers -->
     <!--[if lt IE 9]>

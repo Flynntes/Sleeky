@@ -72,77 +72,79 @@
 	}
 ?>
 
-	
-<?php if( isset($status) && $status == 'success' ):  ?>
+	<div class="container-fluid h-100">
+		<div class="row justify-content-center align-items-center h-100">
+			<div class="col-12 col-lg-10 col-xl-8 col-xxl-5 mt-5">
+				<div class="card border-0 mt-5">
+					<?php if( isset($status) && $status == 'success' ):  ?>
+						<?php $url = preg_replace("(^https?://)", "", $shorturl );  ?>
 
-	<?php $url = preg_replace("(^https?://)", "", $shorturl );  ?>
+						<div class="close-container text-end mt-3 me-3">
+							<button type="button" class="btn-close" id="close-shortened-screen" aria-label="Close"></button>
+						</div>
 
-	<section class="success-screen">
-		<div class="container verticle-center">
-			<div class="main-content">
-				<div class="close noselect">
-				    <a href="javascript:window.location.href=window.location.href;"><i class="material-icons">close</i></a>
-				</div>
-				<section class="head">
-					<h2>YOUR SHORTENED LINK:</h2>
-				</section>
-				<section class="link-section">
-					<input type="text" class="short-url" disabled style="text-transform:none;" value="<?php echo $shorturl; ?>">
-					<button class="short-url-button noselect" data-clipboard-text="<?php echo $shorturl; ?>">Copy</button>
-					<span class="info">View info &amp; stats at <a href="<?php echo $shorturl; ?>+"><?php echo $url; ?>+</a></span>
-				</section>
-			</div>
-	</section>
+						<div class="card-body px-5 pb-5">
+							<h2 class="text-uppercase text-center">Your shortened link</h2>
+							
+							<div class="row justify-content-center">
+								<div class="col-10">
+									<div class="input-group input-group-block mt-4 mb-3">
+										<input type="text" class="form-control text-uppercase" value="<?php echo $shorturl; ?>" required>
+										<button class="btn btn-primary text-uppercase py-2 px-5 mt-2 mt-md-0" type="submit" id="copy-button" data-shorturl="<?php echo $shorturl; ?>">Copy</button>
+									</div>
+									<span class="info">View info &amp; stats at <a href="<?php echo $shorturl; ?>+"><?php echo $url; ?>+</a></span>
+								</div>
+							</div>
+						</div>
+					<?php else: ?>
+						<div class="text-center">
+							<img src="<?php echo YOURLS_SITE ?><?php echo logo ?>" alt="Logo" width="95px" class="mt-n5">
+						</div>
+						<div class="card-body px-md-5">
+							<p><?php echo description ?></p>
 
-    <script>
-	    var clipboard = new ClipboardJS('.short-url-button');
-    </script>
+							<?php if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ): ?>
+								<?php if (strpos($message,'added') === false): ?>
+									<div class="alert alert-danger alert-dismissible fade show" role="alert">
+										<span>Oh no, <?php echo $message; ?>!</span>
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+									</div>	    
+								<?php endif; ?>
+							<?php endif; ?>
 
-<?php else: ?>
-
-	<?php $site = YOURLS_SITE; ?>
-
-	<div class="container verticle-center main">
-		<div class="main-content">
-			<div class="above">
-				<img class="noselect" src="<?php echo siteURL ?><?php echo logo ?>" alt="Logo" width="95px">
-			</div>
-			<section class="head">
-				<p><?php echo description ?></p>
-			</section>
-			<section class="field-section">
-				<?php if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ): ?>
-					<?php if (strpos($message,'added') === false): ?>
-						<div id="error" class="alert alert-warning error" role="alert">
-							<h5>Oh no, <?php echo $message; ?>!</h5>
-						</div>	    
-					<?php endif; ?>
-				<?php endif; ?>
-				<form id="shortenlink" method="post" action="">
-					<input type="url" name="url" class="url" id="url" placeholder="PASTE URL, SHORTEN &amp; SHARE" required>
-					<input type="submit" value="Shorten">
-					<?php if (enableCustomURL): ?>
-						<span class="customise-button noselect" id="customise-toggle"><img src="<?php echo siteURL ?>/frontend/assets/svg/custom-url.svg" alt="Options"> Customise Link</span>
-						<div class="customise-container" id="customise-link" style="display:none;">
-							<span><?php echo preg_replace("(^https?://)", "", siteURL ); ?>/</span>
-							<input type="text" name="keyword" class="custom" placeholder="CUSTOM URL">
+							<form id="shortenlink" method="post" action="">
+								<div class="input-group input-group-block mt-4 mb-3">
+									<input type="url" name="url" id="url" class="form-control text-uppercase" placeholder="PASTE URL, SHORTEN &amp; SHARE" aria-label="PASTE URL, SHORTEN &amp; SHARE" aria-describedby="shorten-button" required>
+									<input class="btn btn-primary text-uppercase py-2 px-4 mt-2 mt-md-0" type="submit" id="shorten-button" value="Shorten" />
+								</div>
+								<?php if (enableCustomURL): ?>
+									<a class="btn btn-sm btn-white text-black-50 text-uppercase" data-bs-toggle="collapse" href="#customise-link" role="button" aria-expanded="false" aria-controls="customise-link">
+										<img src="<?php echo YOURLS_SITE ?>/frontend/assets/svg/custom-url.svg" alt="Options"> Customise Link
+									</a>
+									<div class="collapse" id="customise-link">
+										<div class="mt-2 card card-body">
+											<div class="d-flex  align-items-center">
+												<span class="me-2"><?php echo preg_replace("(^https?://)", "", YOURLS_SITE ); ?>/</span>
+												<input type="text" name="keyword" class="form-control form-control-sm text-uppercase" placeholder="CUSTOM URL" aria-label="CUSTOM URL">
+											</div>
+										</div>
+									</div>
+								<?php endif; ?>
+							</form>
 						</div>
 					<?php endif; ?>
-				</form>
-			</section>
-			<section class="footer">
-		<div>
-			<span class="light">&copy; <?php echo date("Y"); ?> <?php echo shortTitle ?></span>
-			<div class="footer-links">
-				<?php foreach ($footerLinks as $key => $val): ?>
-					<a href="<?php echo $val ?>"><span><?php echo $key ?></span></a>
-				<?php endforeach ?>
+				</div>
+				<div class="d-flex flex-column flex-md-row align-items-center my-3">
+					<span class="text-white fw-light">&copy; <?php echo date("Y"); ?> <?php echo shortTitle ?></span>
+					<div class="ms-3">
+						<?php foreach ($footerLinks as $key => $val): ?>
+							<a class="bold-link me-3 text-white text-decoration-none" href="<?php echo $val ?>"><span><?php echo $key ?></span></a>
+						<?php endforeach ?>
+					</div>
+				</div>
 			</div>
 		</div>
-	</section>
-		</div>
 	</div>
-<?php endif; ?>
-<?php include 'frontend/footer.php'; ?>
+	<?php include 'frontend/footer.php'; ?>
 </body>
 </html>

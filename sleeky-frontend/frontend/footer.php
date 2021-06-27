@@ -1,39 +1,86 @@
-<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://www.google.com/recaptcha/api.js?render=<?php echo recaptchaV3SiteKey ?>"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <script>
-	$('#shortenlink').submit(function(event) {
-		if (<?php echo (int)enableRecaptcha  ?>) {
-                        grecaptcha.ready(function() {
-                                grecaptcha.execute('<?php echo recaptchaV3SiteKey ?>', {action: 'shorten_link'}).then(function(token) {
-                                        $('#shortenlink').prepend('<input type="hidden" name="token" value="' + token + '">');
-                                        $('#shortenlink').prepend('<input type="hidden" name="action" value="shorten_link">');
-                                        $('#shortenlink').unbind('submit').submit();
-                                });;
-                        });
-                }else {
-                        $('#shortenlink').unbind('submit').submit();
-                }
-	});
-</script>
+	// From https://stackoverflow.com/a/30810322
+	function fallbackCopyTextToClipboard(text) {
+		var textArea = document.createElement("textarea");
+		textArea.value = text;
+		
+		// Avoid scrolling to bottom
+		textArea.style.top = "0";
+		textArea.style.left = "0";
+		textArea.style.position = "fixed";
 
-<script>
-	$(document).ready(function() {
-		$('.link').click(function() {
-			event.preventDefault();
-			newLocation = this.href;
-			$('body').fadeOut(1000, newpage);
-		});
+		document.body.appendChild(textArea);
+		textArea.focus();
+		textArea.select();
 
-		function newpage() {
-			window.location = newLocation;
+		try {
+			var successful = document.execCommand('copy');
+			var msg = successful ? 'successful' : 'unsuccessful';
+			console.log('Fallback: Copying text command was ' + msg);
+		} catch (err) {
+			console.error('Fallback: Oops, unable to copy', err);
 		}
 
-		$('.hide-if-no-js').removeClass('hide-if-no-js');
-		$('.hide-if-js').hide();
-		
-		$('#customise-toggle').on('click', function (event) {
-			$('#customise-link').slideToggle('show');
+		document.body.removeChild(textArea);
+	}
+
+	function copyTextToClipboard(text) {
+		if (!navigator.clipboard) {
+			fallbackCopyTextToClipboard(text);
+			return;
+		}
+		navigator.clipboard.writeText(text).then(function() {
+			console.log('Async: Copying to clipboard was successful!');
+		}, function(err) {
+			console.error('Async: Could not copy text: ', err);
 		});
-	});
+	}
+
+	const copyBtn = document.querySelector('button#copy-button');
+
+	if (copyBtn) {
+		copyBtn.addEventListener('click', function(event) {
+			copyTextToClipboard(event.target.dataset.shorturl);
+		});
+	}
+
+	const closeShortenedLinkScreenButton = document.querySelector('button#close-shortened-screen');
+
+	if (closeShortenedLinkScreenButton) {
+		closeShortenedLinkScreenButton.addEventListener('click', function(event) {
+			window.location.href=window.location.href;
+		});
+	}
 </script>
+
+<?php if (enableRecaptcha) : ?>
+	<script src="https://www.google.com/recaptcha/api.js?render=<?php echo recaptchaV3SiteKey ?>"></script>
+	<script>
+		const shortenForm = document.querySelector("form#shortenlink");
+
+		if (shortenForm) {
+			shortenForm.addEventListener("submit", function(e){
+				e.preventDefault();
+				grecaptcha.ready(function() {
+					grecaptcha.execute('<?php echo recaptchaV3SiteKey ?>', {action: 'shorten_link'}).then(function(token) {
+						const tokenInput = document.createElement("input");
+						tokenInput.setAttribute("type", "hidden");
+						tokenInput.setAttribute("name", "token");
+						tokenInput.setAttribute("value", token);
+						
+						const actionInput = document.createElement("input");
+						actionInput.setAttribute("type", "hidden");
+						actionInput.setAttribute("name", "action");
+						actionInput.setAttribute("value", "shorten_link");
+						
+						shortenForm.prepend(tokenInput);
+						shortenForm.prepend(actionInput);
+						shortenForm.submit();
+					});
+				});
+			});
+		}
+	</script>
+<?php endif; ?>

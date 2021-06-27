@@ -1,0 +1,35 @@
+// Font Imports
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap');
+
+$open-sans: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$montserrat: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// Bootstrap Overrides
+$enable-negative-margins: true;
+$font-family-sans-serif: $open-sans;
+$input-btn-font-family: $montserrat;
+$headings-font-family: $montserrat;
+$input-bg: #ebebeb;
+$input-font-weight: 700;
+$btn-font-weight: 700;
+$input-border-width: 0;
+$border-radius: 6px;
+
+// Bootstrap Imports
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+// Custom Styles
+.bold-link {
+    font-family: $montserrat;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+@include media-breakpoint-down(md) {
+    .input-group-block {
+        input, button {
+            width: 100%;
+            border-radius: $border-radius !important;
+        }
+    }
+}

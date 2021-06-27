@@ -3,9 +3,6 @@
 
 // GENERAL
 
-// Site URL (no trailing slash)
-define('siteURL', $YOURLS_SITE);
-
 // Page title for your site
 define('title', 'Sleeky theme for YOURLS'); 
 
@@ -54,8 +51,8 @@ define('colour', '#007bff');
 // "TITLE" => "LINK",
 $footerLinks = [
     "About"   =>  "https://sleeky.flynntes.com/",
-    "Contact" =>  "https://sleeky.flynntes.com/",
-    "Legal"   =>  "https://sleeky.flynntes.com/",
+    "Contact" =>  "https://yourls.org/",
+    "Legal"   =>  "https://yourls.org/",
     "Admin"   =>  "/admin"
 ];
 

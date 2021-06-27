@@ -1,0 +1,21 @@
+{
+  "name": "sleeky-frontend",
+  "version": "2.5.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.0.0",
+    "sass": "^1.35.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.0.2",
+    "popper.js": "^1.16.1"
+  }
+}

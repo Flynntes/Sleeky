@@ -139,9 +139,21 @@ function sleeky_settings_update() {
 	}
 }
 
-// Hide admin links for non-authenticated users
-if (yourls_is_valid_user() != 1) {
-	echo <<<HEAD
-		<style>ul#admin_menu li:not(.frontend_link) {display: none}</style>
-HEAD;
+/*
+ * Remove admin links for non-authenticated users
+*/
+yourls_add_filter('admin_links', 'sleeky_admin_links');
+function sleeky_admin_links($links)
+{
+    if (true !== yourls_is_valid_user()) {
+        $links = [];
+    }
+
+    $links['frontend_link'] = [
+        'url'    => yourls_site_url(false, '/'),
+        'title'  => yourls__( 'Frontend Interface' ),
+        'anchor' => '<i class="material-icons">arrow_back</i> ' . yourls__( 'Frontend Interface' )
+    ];
+
+    return $links;
 }

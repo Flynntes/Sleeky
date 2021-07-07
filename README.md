@@ -15,12 +15,14 @@ Sleeky is split into two parts - **frontend** and **backend**.
 ## Quick Start
 1. Get a YOURLS install up and running.
 2. Clone this repo.
-2. Move the contents of the `sleeky-frontend` directory to the root of your YOURLS installation.
-3. Open the frontend/config.php file and change the values to suit (Remember to setup reCAPTCHA).
+3. Move the contents of the `sleeky-frontend` directory to the root of your YOURLS installation.
+4. Open the frontend/config.php file and change the values to suit (Remember to setup reCAPTCHA).
 *Sleeky frontend is now installed a ready*
-4. Move the `sleeky-backend` folder to the `user/plugins/` folder of your YOURLS installation.
-5. Activate the plugin in the YOURLS admin area (`example.com/admin/plugins.php`). The plugin will show as Sleeky Backend.
-6. Done. Sleeky is now installed
+5. Move the `sleeky-backend` folder to the `user/plugins/` folder of your YOURLS installation.
+6. Activate the plugin in the YOURLS admin area (`example.com/admin/plugins.php`). The plugin will show as Sleeky Backend.
+7. Done. Sleeky is now installed
+
+
 
 ## Documentation 
 Everything you need to know about Sleeky can be found in the Wiki! You can find that [here](https://github.com/Flynntes/Sleeky/wiki)

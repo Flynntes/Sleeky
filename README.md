@@ -26,7 +26,7 @@ Sleeky is split into two parts - **frontend** and **backend**.
 Everything you need to know about Sleeky can be found in the Wiki! You can find that [here](https://github.com/Flynntes/Sleeky/wiki)
 
 ## Help
-Need a hand? I would love to help you out! Head over to my [site](http://flynntes.com/contact). Alternatively, you could open an issue on GitHub or you could [tweet me](http://twitter.com/flynntes).
+Need a hand? I would love to help you out! Head over to my [site](https://flynntes.com/#contact). Alternatively, you could open an issue on GitHub or you could [tweet me](http://twitter.com/flynntes).
 
 ## Versioning
 Sleeky follows the principles of [Semantic Versioning](http://semver.org/).

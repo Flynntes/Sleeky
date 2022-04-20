@@ -12,7 +12,7 @@
 
         <title><?php echo title ?></title>
 
-        <link rel="stylesheet" href="<?php echo $YOURLS_SITE ?>/frontend/dist/styles.css">
+        <link rel="stylesheet" href="<?php $YOURLS_SITE ?>/frontend/dist/styles.css">
 
         <?php if (defined('backgroundImage')) : ?>
             <style>

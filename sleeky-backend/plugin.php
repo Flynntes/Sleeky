@@ -140,8 +140,25 @@ function sleeky_settings_update() {
 }
 
 // Hide admin links for non-authenticated users
-if (yourls_is_valid_user() != 1) {
-	echo <<<HEAD
-		<style>ul#admin_menu li:not(.frontend_link) {display: none}</style>
-HEAD;
+yourls_add_filter( 'admin_links', 'sleeky_admin_links' );
+function sleeky_admin_links( $admin_links ) {
+    if ( true !== yourls_is_valid_user() ) {
+        $admin_links = [];
+    } else {
+    	$admin_links['help'] = [
+	        'url'    => yourls_site_url( false, '/' ) . '/readme.html',
+	        'anchor' => yourls__( 'Help' )
+	    ];
+    }
+
+    $admin_links['frontend'] = [
+        'url'    => yourls_site_url( false, '/' ),
+        'anchor' => '<i class="material-icons">arrow_back</i> ' . yourls__( 'Frontend Interface' )
+    ];
+
+    return $admin_links;
+}
+yourls_add_filter( 'help_link', 'sleeky_help_link' );
+function sleeky_help_link( $help_link ) {
+    return null;
 }

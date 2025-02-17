@@ -40,9 +40,8 @@ define('colour', '#007bff');
 
 // Optional
 // Set a background image to be used.
-// default: unsplash.com random daily photo of the day
-// More possibilities of photo embedding from unsplash could be found at: https://source.unsplash.com
-// define('backgroundImage', 'https://source.unsplash.com/daily');
+// default: picsum.photos random photos
+// define('backgroundImage', 'https://picsum.photos/1920/1080');
 
 // FOOTER
 

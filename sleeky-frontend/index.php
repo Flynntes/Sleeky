@@ -87,7 +87,7 @@
 						</div>
 
 						<div class="card-body px-5 pb-5">
-							<h2 class="text-uppercase text-center">Your shortened link</h2>
+							<h2 class="text-center sleeky-heading">Your shortened link</h2>
 							
 							<div class="row justify-content-center">
 								<div class="col-10">
@@ -105,7 +105,7 @@
 							<img src="<?php echo YOURLS_SITE ?><?php echo logo ?>" alt="Logo" width="95px" class="mt-n5">
 						</div>
 						<div class="card-body px-md-5">
-							<h2 class="text-uppercase text-center mb-4">Login Required</h2>
+							<h2 class="text-center mb-4 sleeky-heading">Login Required</h2>
 							<p class="text-center mb-4">Please log in to access the link shortening service.</p>
 							
 							<?php if( isset($_REQUEST['username']) || isset($_REQUEST['password']) ): ?>
@@ -160,7 +160,7 @@
 
 							<form id="shortenlink" method="post" action="">
 								<div class="input-group input-group-block mt-4 mb-3">
-									<input type="url" name="url" id="url" class="form-control text-uppercase" placeholder="PASTE URL, SHORTEN &amp; SHARE" aria-label="PASTE URL, SHORTEN &amp; SHARE" aria-describedby="shorten-button" required>
+									<input type="url" name="url" id="url" class="form-control sleeky-input" placeholder="Paste URL, Shorten &amp; Share" aria-label="Paste URL, Shorten &amp; Share" aria-describedby="shorten-button" required>
 									<input class="btn btn-primary text-uppercase py-2 px-4 mt-2 mt-md-0" type="submit" id="shorten-button" value="Shorten" />
 								</div>
 								<?php if (enableCustomURL): ?>
@@ -171,7 +171,7 @@
 										<div class="mt-2 card card-body">
 											<div class="d-flex  align-items-center">
 												<span class="me-2"><?php echo preg_replace("(^https?://)", "", YOURLS_SITE ); ?>/</span>
-												<input type="text" name="keyword" class="form-control form-control-sm text-uppercase" placeholder="CUSTOM URL" aria-label="CUSTOM URL">
+												<input type="text" name="keyword" class="form-control form-control-sm sleeky-input" placeholder="Custom URL" aria-label="Custom URL">
 											</div>
 										</div>
 									</div>

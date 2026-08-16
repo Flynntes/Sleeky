@@ -3,7 +3,7 @@
 Plugin Name: Sleeky Backend
 Plugin URI: https://sleeky.flynntes.com
 Description: UI overhaul of the YOURLS backend
-Version: 2.6.0
+Version: 2.6.1
 Author: Flynn Tesoriero
 Author URI: https://flynntes.com
 */
@@ -14,10 +14,34 @@ if( !defined( 'YOURLS_ABSPATH' ) ) die();
 // Plugin location URL
 $url = yourls_plugin_url( __DIR__ );
 
-yourls_add_action( 'html_head', 'init' );
+/**
+ * Only inject Sleeky CSS/JS on real admin HTML pages (Issue #96).
+ * Avoid polluting API/XML/JSON or other non-HTML html_head consumers.
+ */
+function sleeky_is_html_admin_context( $args = null ) {
+	if ( defined( 'YOURLS_AJAX' ) && YOURLS_AJAX ) {
+		return false;
+	}
+	$context = '';
+	if ( is_array( $args ) && isset( $args[0] ) ) {
+		$context = (string) $args[0];
+	} elseif ( is_string( $args ) ) {
+		$context = $args;
+	}
+	$skip = array( 'api', 'bookmarklet' );
+	if ( $context !== '' && in_array( $context, $skip, true ) ) {
+		return false;
+	}
+	return true;
+}
 
-function init()
+yourls_add_action( 'html_head', 'sleeky_init_body_reset' );
+
+function sleeky_init_body_reset( $args = null )
 {
+	if ( ! sleeky_is_html_admin_context( $args ) ) {
+		return;
+	}
 	echo <<<HEAD
 		<style>body {background: unset;}</style>
 HEAD;
@@ -26,29 +50,30 @@ HEAD;
 // Inject Sleeky files
 yourls_add_action( 'html_head', 'sleeky_head_scripts' );
 
-function sleeky_head_scripts() {
+function sleeky_head_scripts( $args = null ) {
+	if ( ! sleeky_is_html_admin_context( $args ) ) {
+		return;
+	}
 
 	// This is so the user doesn't have to reload page twice in settings screen
 	if (isset( $_POST['theme_choice'] )) {
 		// User has just changed theme
 		if ($_POST['theme_choice'] == "light") {
-			setTheme("light");
+			sleeky_set_theme("light");
 		} else {
-			setTheme("dark");
+			sleeky_set_theme("dark");
 		}
 	} else {
 		// User has not just changed theme
 		if (yourls_get_option( 'theme_choice' ) == "light") {
-			setTheme("light");
+			sleeky_set_theme("light");
 		} else {
-			setTheme("dark");
+			sleeky_set_theme("dark");
 		}
 	}
 }
 
-// Inject Sleeky files
-
-function setTheme($theme) {
+function sleeky_set_theme($theme) {
 	$url = yourls_plugin_url( __DIR__ );
 	if ($theme == "light") {
 		echo <<<HEAD
@@ -68,10 +93,13 @@ HEAD;
 }
 
 // Inject information and options into the frontend
-yourls_add_action( 'html_head', 'addOptions' );
+yourls_add_action( 'html_head', 'sleeky_add_options_meta' );
 
-function addOptions()
+function sleeky_add_options_meta( $args = null )
 {
+	if ( ! sleeky_is_html_admin_context( $args ) ) {
+		return;
+	}
 	$url = yourls_plugin_url( __DIR__ );
 	echo <<<HEAD
 			<meta name="pluginURL" content="$url">
@@ -127,8 +155,6 @@ function sleeky_settings_update() {
 	
 	if( $in ) {
 		// Validate theme_choice. ALWAYS validate and sanitize user input.
-		// Here, we want an integer
-		// $in = intval( $in);
 		if ($in == "light" or $in == "dark") {
 			// Update value in database
 			yourls_update_option( 'theme_choice', $in );
@@ -139,7 +165,7 @@ function sleeky_settings_update() {
 	}
 }
 
-// Hide admin links for non-authenticated users
+// Hide admin links for non-authenticated users (fixes API/XML pollution cluster #39/#64/#77/#80/#97/#113)
 yourls_add_filter( 'admin_links', 'sleeky_admin_links' );
 function sleeky_admin_links( $admin_links ) {
     if ( true !== yourls_is_valid_user() ) {

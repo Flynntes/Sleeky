@@ -946,3 +946,103 @@ body > div > pre {
     padding-left: 20px;
   }
 }
+
+//
+// YOURLS Delete Confirmation Dialog (added in YOURLS 1.10)
+// Cherry-picked from Flynntes/Sleeky PR #154
+//
+#delete-confirm-dialog {
+  background: $default;
+  color: $text;
+  border: 1px solid $accent;
+  border-radius: 0;
+  padding: 0;
+  width: 50em;
+  max-width: 90vw;
+  height: fit-content;
+  max-height: 90vh;
+  inset: 0;
+  margin: auto;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+
+  @if ($theme == "light") {
+    border-radius: 6px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  }
+
+  > div[name="dialog_title"] {
+    background: $light;
+    color: $title;
+    font-size: 1.15em;
+    font-weight: 600;
+    text-align: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid $accent;
+    border-radius: 0;
+
+    @if ($theme == "light") {
+      border-radius: 6px 6px 0 0;
+    }
+  }
+
+  div.confirm-message {
+    background: $default;
+    color: $text;
+    width: auto;
+    height: auto;
+    padding: 1em 1.5em;
+    text-align: left;
+
+    ul {
+      border-left: 5px solid $accent;
+      list-style-type: none;
+      padding: 0 1em;
+      margin: 0.5em 0 0;
+
+      li {
+        margin-bottom: 0.5em;
+        color: $text;
+
+        span {
+          background: $light;
+          color: $text;
+          border: 1px solid $lightest;
+          padding: 2px 8px;
+          border-radius: 0;
+
+          @if ($theme == "light") {
+            border-radius: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  div.button-group {
+    background: $light;
+    width: auto;
+    height: auto;
+    padding: 0.75em 1.5em;
+    text-align: right;
+    border-top: 1px solid $lightest;
+    border-radius: 0;
+
+    @if ($theme == "light") {
+      border-radius: 0 0 6px 6px;
+    }
+
+    input[type="submit"]:not(:last-child) {
+      border-left: 7px solid $accent !important;
+    }
+    input[type="submit"]:last-child {
+      border-left: 7px solid $lightest !important;
+    }
+  }
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+// End YOURLS Delete Confirmation Dialog

@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node-sass --watch assets/css/themes -o assets/css --output-style compressed"
+    "start": "sass --watch assets/css/themes:assets/css --style=compressed",
+    "build": "sass assets/css/themes:assets/css --style=compressed"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-sass": "^4.12.0"
+    "sass": "^1.80.0"
   }
 }

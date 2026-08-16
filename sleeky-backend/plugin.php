@@ -78,6 +78,27 @@ function addOptions()
 HEAD;
 }
 
+// Fix login redirect URL to prevent blank page after login (Issue #35)
+yourls_add_filter( 'redirect_location', 'sleeky_fix_login_redirect', 10, 2 );
+
+function sleeky_fix_login_redirect( $location, $code ) {
+	// Only fix redirects after login (when redirecting to admin area)
+	if ( strpos( $location, '/admin' ) !== false ) {
+		// Remove trailing ? and empty query strings
+		$location = rtrim( $location, '?' );
+		// Remove .php extension for clean URL
+		$location = str_replace( '/admin/index.php', '/admin', $location );
+		$location = str_replace( '/admin/index.php?', '/admin', $location );
+		// Ensure no double slashes (except after protocol)
+		$location = preg_replace( '#([^:])//+#', '$1/', $location );
+		// If URL ends with just /admin or /admin/, ensure it's /admin (no trailing slash)
+		if ( preg_match( '#/admin/?$#', $location ) && !preg_match( '#/admin/[^/]+#', $location ) ) {
+			$location = preg_replace( '#/admin/?$#', '/admin', $location );
+		}
+	}
+	return $location;
+}
+
 // Register our plugin admin page
 yourls_add_action( 'plugins_loaded', 'sleeky_add_settings' );
 function sleeky_add_settings() {

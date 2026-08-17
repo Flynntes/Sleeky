@@ -18,46 +18,44 @@ define('favicon', '/frontend/assets/img/favicon.ico');
 // Logo for your site, displayed on home page
 define('logo', '/frontend/assets/img/logo-black.png');
 
-// Enable reCAPTCHA V3
-// It is highly recommended you use reCAPTCHA V3. It will stop spam. You can get a site and secret key from here: https://www.google.com/recaptcha/admin/create
-define("enableRecaptcha", false);
+// Enable hCaptcha on the public shorten form (checkbox challenge)
+// Get keys at https://dashboard.hcaptcha.com/
+define('enableHcaptcha', false);
+define('hcaptchaSiteKey', 'YOUR_SITE_KEY_HERE');
+define('hcaptchaSecretKey', 'YOUR_SECRET_KEY_HERE');
 
-// reCAPTCHA V3 Site Key
-define("recaptchaV3SiteKey", 'YOUR_SITE_KEY_HERE');
-
-// reCAPTCHA V3 Secret Key
-define("recaptchaV3SecretKey", 'YOUR_SECRET_KEY_HERE');
+// Enable reCAPTCHA V3 (legacy; keep disabled when using hCaptcha)
+// https://www.google.com/recaptcha/admin/create
+define('enableRecaptcha', false);
+define('recaptchaV3SiteKey', 'YOUR_SITE_KEY_HERE');
+define('recaptchaV3SecretKey', 'YOUR_SECRET_KEY_HERE');
 
 // Enable authentication requirement for shortening links
 // true = only authenticated users can shorten, false = anyone can shorten
-// default: false
 define('requireAuth', false);
 
+// When false, hide the public shorten form (admin/API still work). Issue #118
+define('enablePublicShorten', true);
+
+// Apply text-uppercase to URL/keyword inputs. Default false (Issue #115 / PR #48).
+define('enableUppercaseInputs', false);
+
+// Show a QR code image on the success screen (Issue #129). Default false.
+define('enableQrOnSuccess', false);
+
 // Enables the custom URL field
-// true or false
 define('enableCustomURL', true);
 
-// Optional
-// Set a primary colour to be used. Default: #007bff
-// Here are some other colours you could try:
-// #f44336: red, #9c27b0: purple, #00bcd4: teal, #ff5722: orange
+// Optional primary colour. Default: #007bff
 define('colour', '#007bff');
 
-// Optional
-// Set a background image to be used.
-// default: picsum.photos random photos
+// Optional background image
 // define('backgroundImage', 'https://picsum.photos/1920/1080');
 
 // FOOTER
-
-// These are the links in the footer. Add a new link for each new link.
-// The array follows a title link structure:
-// "TITLE" => "LINK",
 $footerLinks = [
     "About"   =>  "https://sleeky.flynntes.com/",
     "Contact" =>  "https://yourls.org/",
     "Legal"   =>  "https://yourls.org/",
     "Admin"   =>  "/admin"
 ];
-
-?>

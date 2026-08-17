@@ -59,6 +59,17 @@ $( document ).ready(function() {
     // Create the sleeky new URL section from the template
     $("nav").append($('<div>').load(`${url}/assets/html/form.html`, function () {
       $("#nonce-add").val(nonce);
+      // Issue #138: Enter submits the admin shortener
+      $("#add-url, #add-keyword").on("keydown", function (e) {
+        if (e.key === "Enter" || e.keyCode === 13) {
+          e.preventDefault();
+          if (typeof add_link === "function") {
+            add_link();
+          } else {
+            $("#add-button").trigger("click");
+          }
+        }
+      });
     }));
   } else if ($("body").hasClass("tools")) {
     // Tools page
@@ -131,9 +142,9 @@ $( document ).ready(function() {
       $("main").append("<p>" + $(this).html() + "</p>");
       $(this).remove();
     } else if (/Powered by/.test($(this).text())) {
-        // Update footer
+        // Update footer (Issue #120: keep valid HTML link)
         var content = $(this).html();
-        var updated_content = `Running on <br> ${content.replace(/Powered by.*?(?=<|$)/i, '')} <br> <a href="https://sleeky.flynntes.com/" title="Sleeky">Sleeky</a> v 2.6.0`;
+        var updated_content = `Running on <br> ${content.replace(/Powered by.*?(?=<|$)/i, '')} <br> <a href="https://sleeky.flynntes.com/" title="Sleeky">Sleeky</a> v 2.6.1`;
         $(this).html(updated_content);
       }
   });

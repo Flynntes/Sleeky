@@ -12,7 +12,15 @@
 	$inputUc = (defined('enableUppercaseInputs') && enableUppercaseInputs) ? ' text-uppercase' : '';
 	$publicShorten = !defined('enablePublicShorten') || enablePublicShorten;
 
-	if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' && $publicShorten && (!defined('requireAuth') || !requireAuth || $is_authenticated === true) ) {
+	$is_post_request = ( $_SERVER['REQUEST_METHOD'] === 'POST' );
+	$is_bookmarklet  = ( isset( $_GET['jsonp'] ) && $_GET['jsonp'] == 'yourls' );
+
+	if ( ( $is_post_request || $is_bookmarklet ) && isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' && $publicShorten && (!defined('requireAuth') || !requireAuth || $is_authenticated === true) ) {
+		// CSRF protection: the bookmarklet (jsonp) call is exempt, all other
+		// link creation must carry a valid nonce from the shorten form
+		if ( !$is_bookmarklet ) {
+			yourls_verify_nonce( 'sleeky_shorten' );
+		}
 		if (defined('enableHcaptcha') && enableHcaptcha) {
 			$token = isset($_POST['h-captcha-response']) ? trim($_POST['h-captcha-response']) : '';
 			if ($token === '') {
@@ -40,7 +48,6 @@
 			}
 		} elseif (defined('enableRecaptcha') && enableRecaptcha) {
 			$token = isset($_POST['token']) ? $_POST['token'] : '';
-			$action = isset($_POST['action']) ? $_POST['action'] : '';
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
 			curl_setopt($ch, CURLOPT_POST, 1);
@@ -49,7 +56,7 @@
 			$response = curl_exec($ch);
 			curl_close($ch);
 			$arrResponse = json_decode($response, true);
-			if(is_array($arrResponse) && !empty($arrResponse["success"]) && isset($arrResponse["action"]) && $arrResponse["action"] == $action && isset($arrResponse["score"]) && $arrResponse["score"] >= 0.5) {
+			if(is_array($arrResponse) && !empty($arrResponse["success"]) && isset($arrResponse["action"]) && $arrResponse["action"] == 'shorten_link' && isset($arrResponse["score"]) && $arrResponse["score"] >= 0.5) {
 				shorten();
 			} else {
 				$message = "reCAPTCHA failed";
@@ -135,11 +142,11 @@
 						</div>
 					<?php elseif( !$publicShorten ): ?>
 						<div class="text-center">
-							<img src="<?php echo YOURLS_SITE ?><?php echo logo ?>" alt="Logo" width="95px" class="mt-n5">
+							<img src="<?php echo htmlspecialchars(YOURLS_SITE, ENT_QUOTES, 'UTF-8'); ?><?php echo htmlspecialchars(logo, ENT_QUOTES, 'UTF-8'); ?>" alt="Logo" width="95px" class="mt-n5">
 						</div>
 						<div class="card-body px-md-5">
 							<h1 class="h4 text-center mb-3"><?php echo htmlspecialchars(title, ENT_QUOTES, 'UTF-8'); ?></h1>
-							<p class="text-center">Public link shortening is currently disabled. Use the <a href="<?php echo YOURLS_SITE; ?>/admin/">admin area</a> or the API.</p>
+							<p class="text-center">Public link shortening is currently disabled. Use the <a href="<?php echo htmlspecialchars(YOURLS_SITE, ENT_QUOTES, 'UTF-8'); ?>/admin/">admin area</a> or the API.</p>
 						</div>
 					<?php else: ?>
 						<div class="text-center">
@@ -162,6 +169,7 @@
 									<input type="url" name="url" id="url" class="form-control sleeky-input<?php echo $inputUc; ?>" placeholder="Paste URL, Shorten &amp; Share" aria-label="Paste URL, Shorten &amp; Share" aria-describedby="shorten-button" required>
 									<input class="btn btn-primary text-uppercase py-2 px-4 mt-2 mt-md-0" type="submit" id="shorten-button" value="Shorten" />
 								</div>
+								<?php echo yourls_nonce_field('sleeky_shorten', 'nonce', false, false); ?>
 								<?php if (defined('enableHcaptcha') && enableHcaptcha): ?>
 									<div class="mb-3 d-flex justify-content-center">
 										<div class="h-captcha" data-sitekey="<?php echo htmlspecialchars(hcaptchaSiteKey, ENT_QUOTES, 'UTF-8'); ?>"></div>

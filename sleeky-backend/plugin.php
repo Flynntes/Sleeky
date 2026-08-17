@@ -82,8 +82,10 @@ HEAD;
 yourls_add_filter( 'redirect_location', 'sleeky_fix_login_redirect', 10, 2 );
 
 function sleeky_fix_login_redirect( $location, $code ) {
-	// Only fix redirects after login (when redirecting to admin area)
-	if ( strpos( $location, '/admin' ) !== false ) {
+	// Only fix the relative admin redirect issued after login (Issue #35).
+	// Do not touch absolute URLs: short-link targets may legitimately
+	// contain "/admin" (e.g. https://example.com/admin/index.php?tab=1).
+	if ( isset( $location[0] ) && $location[0] === '/' && strpos( $location, '/admin' ) !== false ) {
 		// Remove trailing ? and empty query strings
 		$location = rtrim( $location, '?' );
 		// Remove .php extension for clean URL

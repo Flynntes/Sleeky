@@ -182,6 +182,122 @@ select:hover {
 
 // End Notification Bar
 
+
+//
+// YOURLS Delete Confirmation Dialog (added in YOURLS 1.10)
+//
+// Shipped by YOURLS as a <dialog id="delete-confirm-dialog"> with a hard
+// blue/white palette that clashes with the Sleeky surface. Re-skin it so
+// it picks up the active theme's colours instead.
+//
+#delete-confirm-dialog {
+  background: $default;
+  color: $text;
+  border: 1px solid $accent;
+  border-radius: 0;
+  padding: 0;
+  width: 50em;
+  max-width: 90vw;
+  // height: auto picked up the viewport (100vh) under Sleeky because the
+  // body sets display: inline; fit-content tells the browser to size to
+  // the actual children instead.
+  height: fit-content;
+  max-height: 90vh;
+  // Native <dialog> is showModal()-positioned via inset:0 + margin:auto.
+  // We keep that explicit so any vendor-prefixed default doesn't drift.
+  inset: 0;
+  margin: auto;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+
+  @if ($theme == "light") {
+    border-radius: 6px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  }
+
+  > div[name="dialog_title"] {
+    background: $light;
+    color: $title;
+    font-size: 1.15em;
+    font-weight: 600;
+    text-align: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid $accent;
+    border-radius: 0;
+
+    @if ($theme == "light") {
+      border-radius: 6px 6px 0 0;
+    }
+  }
+
+  div.confirm-message {
+    background: $default;
+    color: $text;
+    width: auto;
+    height: auto;
+    padding: 1em 1.5em;
+    text-align: left;
+
+    ul {
+      border-left: 5px solid $accent;
+      list-style-type: none;
+      padding: 0 1em;
+      margin: 0.5em 0 0;
+
+      li {
+        margin-bottom: 0.5em;
+        color: $text;
+
+        span {
+          background: $light;
+          color: $text;
+          border: 1px solid $lightest;
+          padding: 2px 8px;
+          border-radius: 0;
+
+          @if ($theme == "light") {
+            border-radius: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  div.button-group {
+    background: $light;
+    width: auto;
+    height: auto;
+    padding: 0.75em 1.5em;
+    text-align: right;
+    border-top: 1px solid $lightest;
+    border-radius: 0;
+
+    @if ($theme == "light") {
+      border-radius: 0 0 6px 6px;
+    }
+
+    // YOURLS 1.10.x renders Delete as <input type="button" class="button
+    // primary"> and Cancel as <input type="reset" class="button">. Match
+    // those (tolerating type="submit" variants from older YOURLS): the
+    // destructive action gets the accent border, the cancel action muted.
+    input.button.primary,
+    input[type="submit"].primary {
+      border-left: 7px solid $accent !important;
+    }
+    input[type="reset"],
+    input[type="submit"]:not(.primary) {
+      border-left: 7px solid $lightest !important;
+    }
+  }
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+// End YOURLS Delete Confirmation Dialog
+
+
 // 
 // Login page
 // 
@@ -946,103 +1062,3 @@ body > div > pre {
     padding-left: 20px;
   }
 }
-
-//
-// YOURLS Delete Confirmation Dialog (added in YOURLS 1.10)
-// Cherry-picked from Flynntes/Sleeky PR #154
-//
-#delete-confirm-dialog {
-  background: $default;
-  color: $text;
-  border: 1px solid $accent;
-  border-radius: 0;
-  padding: 0;
-  width: 50em;
-  max-width: 90vw;
-  height: fit-content;
-  max-height: 90vh;
-  inset: 0;
-  margin: auto;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-
-  @if ($theme == "light") {
-    border-radius: 6px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  }
-
-  > div[name="dialog_title"] {
-    background: $light;
-    color: $title;
-    font-size: 1.15em;
-    font-weight: 600;
-    text-align: center;
-    padding: 12px 16px;
-    border-bottom: 1px solid $accent;
-    border-radius: 0;
-
-    @if ($theme == "light") {
-      border-radius: 6px 6px 0 0;
-    }
-  }
-
-  div.confirm-message {
-    background: $default;
-    color: $text;
-    width: auto;
-    height: auto;
-    padding: 1em 1.5em;
-    text-align: left;
-
-    ul {
-      border-left: 5px solid $accent;
-      list-style-type: none;
-      padding: 0 1em;
-      margin: 0.5em 0 0;
-
-      li {
-        margin-bottom: 0.5em;
-        color: $text;
-
-        span {
-          background: $light;
-          color: $text;
-          border: 1px solid $lightest;
-          padding: 2px 8px;
-          border-radius: 0;
-
-          @if ($theme == "light") {
-            border-radius: 3px;
-          }
-        }
-      }
-    }
-  }
-
-  div.button-group {
-    background: $light;
-    width: auto;
-    height: auto;
-    padding: 0.75em 1.5em;
-    text-align: right;
-    border-top: 1px solid $lightest;
-    border-radius: 0;
-
-    @if ($theme == "light") {
-      border-radius: 0 0 6px 6px;
-    }
-
-    input[type="submit"]:not(:last-child) {
-      border-left: 7px solid $accent !important;
-    }
-    input[type="submit"]:last-child {
-      border-left: 7px solid $lightest !important;
-    }
-  }
-
-  &::backdrop {
-    background: rgba(0, 0, 0, 0.7);
-  }
-}
-
-// End YOURLS Delete Confirmation Dialog

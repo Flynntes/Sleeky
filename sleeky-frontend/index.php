@@ -13,12 +13,20 @@
 	$publicShorten = !defined('enablePublicShorten') || enablePublicShorten;
 
 	$is_post_request = ( $_SERVER['REQUEST_METHOD'] === 'POST' );
-	$is_bookmarklet  = ( isset( $_GET['jsonp'] ) && $_GET['jsonp'] == 'yourls' );
+	// Bookmarklet = GET with jsonp=yourls. A cross-site <script src> or a
+	// form POST with ?jsonp=yourls must NOT be treated as a bookmarklet.
+	$is_bookmarklet  = ( !$is_post_request && isset( $_GET['jsonp'] ) && $_GET['jsonp'] == 'yourls' );
+	// The bookmarklet is exempt from the nonce only on public instances
+	// (requireAuth off) where link creation is open to anyone anyway. Any
+	// request that can ride an authenticated cookie (POST, or bookmarklet
+	// on a requireAuth instance) is nonce-protected.
+	$is_public_bookmarklet = $is_bookmarklet && ( !defined('requireAuth') || !requireAuth );
 
 	if ( ( $is_post_request || $is_bookmarklet ) && isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' && $publicShorten && (!defined('requireAuth') || !requireAuth || $is_authenticated === true) ) {
-		// CSRF protection: the bookmarklet (jsonp) call is exempt, all other
-		// link creation must carry a valid nonce from the shorten form
-		if ( !$is_bookmarklet ) {
+		// CSRF protection: only genuine public-mode bookmarklet GETs skip
+		// the nonce; everything else must carry a valid nonce from the
+		// shorten form
+		if ( !$is_public_bookmarklet ) {
 			yourls_verify_nonce( 'sleeky_shorten' );
 		}
 		if (defined('enableHcaptcha') && enableHcaptcha) {

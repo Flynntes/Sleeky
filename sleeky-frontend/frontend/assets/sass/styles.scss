@@ -25,6 +25,30 @@ $border-radius: 6px;
     text-transform: uppercase;
 }
 
+// PR #48: Uppercase headings and placeholders using CSS
+.sleeky-heading {
+    text-transform: uppercase;
+}
+
+// Uppercase placeholders for input fields
+.sleeky-input {
+    &::placeholder {
+        text-transform: uppercase;
+    }
+    
+    &::-webkit-input-placeholder {
+        text-transform: uppercase; // Chrome, Safari, Opera
+    }
+    
+    &::-moz-placeholder {
+        text-transform: uppercase; // Firefox 19+
+    }
+    
+    &:-ms-input-placeholder {
+        text-transform: uppercase; // IE 10+
+    }
+}
+
 @include media-breakpoint-down(md) {
     .input-group-block {
         input, button {

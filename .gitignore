@@ -27,3 +27,5 @@ assets/.sublime-grunt.cache
 .htaccess
 node_modules
 package-lock.json
+!sleeky-backend/package-lock.json
+!sleeky-frontend/frontend/package-lock.json
